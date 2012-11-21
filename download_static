@@ -1,0 +1,51 @@
+#!/bin/bash
+## Downloads the static files
+
+## First, we grab the static files location.  
+## We ASSUME this is in the folder that settings exists in.
+if  ! [  -a manage.py ] 
+    then
+        echo "Your location is bad and you should feel bad."
+        exit
+fi
+
+ROOT=`find . -name settings.py | perl -ne'/\/([A-Za-z0-9_]*)\/settings.py/ && print $1'`
+
+if [ -z $ROOT ] 
+    then
+        echo "Settings not found! Exiting."
+        exit
+fi
+
+STATIC_ROOT="./$ROOT/static"
+if ! [ -d $STATIC_ROOT ] 
+    then
+        echo "$STATIC_ROOT does not exist! Creating it for you."
+        mkdir $STATIC_ROOT
+fi
+
+mkdir -p "$STATIC_ROOT/js"
+mkdir -p "$STATIC_ROOT/css"
+mkdir -p "$STATIC_ROOT/img"
+
+
+
+# jQuery
+if ! [ -a "$STATIC_ROOT/js/jquery-latest.min.js" ]
+    then
+        wget http://code.jquery.com/jquery-latest.min.js -P "$STATIC_ROOT/js"
+else
+    echo "JQUERY Already installed. Skipping."
+fi
+
+# Twitter Bootstrap (Choosing composition over inheritance...)
+if ! [ -a "$STATIC_ROOT/bootstrap" ]
+    then
+        wget http://twitter.github.com/bootstrap/assets/bootstrap.zip
+        unzip bootstrap.zip
+        mv bootstrap/ $STATIC_ROOT
+        rm -rf bootstrap bootstrap.zip
+    else
+        echo "BOOTSTRAP Already installed. Skipping."
+fi
+
