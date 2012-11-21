@@ -1,6 +1,9 @@
 #!/bin/bash
 ## Downloads the static files
 
+## Versions
+BOOTSTRAP_VERSION="2.2.1"
+
 ## First, we grab the static files location.  
 ## We ASSUME this is in the folder that settings exists in.
 if  ! [  -a manage.py ] 
@@ -25,25 +28,12 @@ if ! [ -d $STATIC_ROOT ]
 fi
 
 mkdir -p "$STATIC_ROOT/js"
-mkdir -p "$STATIC_ROOT/css"
+mkdir -p "$STATIC_ROOT/less"
 mkdir -p "$STATIC_ROOT/img"
 
-# jQuery
-if ! [ -a "$STATIC_ROOT/js/jquery-latest.min.js" ]
-    then
-        wget http://code.jquery.com/jquery-latest.min.js -P "$STATIC_ROOT/js"
-else
-    echo "JQUERY Already installed. Skipping."
-fi
+bower install "bootstrap#$BOOTSTRAP_VERSION"
+cp components/bootstrap/js/*.js "$STATIC_ROOT/js/"
+cp components/bootstrap/less/*.less "$STATIC_ROOT/less/"
+cp components/bootstrap/img/*.png "$STATIC_ROOT/img/"
 
-# Twitter Bootstrap (Choosing composition over inheritance...)
-if ! [ -a "$STATIC_ROOT/bootstrap" ]
-    then
-        wget http://twitter.github.com/bootstrap/assets/bootstrap.zip
-        unzip bootstrap.zip
-        mv bootstrap/ $STATIC_ROOT
-        rm -rf bootstrap bootstrap.zip
-    else
-        echo "BOOTSTRAP Already installed. Skipping."
-fi
-
+rm -rf components
