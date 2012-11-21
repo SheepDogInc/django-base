@@ -1,3 +1,5 @@
 django
 raven
 south
+fabric
+coverage
