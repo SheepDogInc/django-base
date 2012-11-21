@@ -1,5 +1,5 @@
-django
-raven
-south
-fabric
-coverage
+django=1.4.1
+raven=2.0.10
+south=0.7.6
+fabric=1.5.1
+coverage=3.5.3
