@@ -21,11 +21,6 @@ if [ -z $ROOT ]
 fi
 
 STATIC_ROOT="./$ROOT/static"
-if ! [ -d $STATIC_ROOT ] 
-    then
-        echo "$STATIC_ROOT does not exist! Creating it for you."
-        mkdir $STATIC_ROOT
-fi
 
 mkdir -p "$STATIC_ROOT/js"
 mkdir -p "$STATIC_ROOT/less"
