@@ -32,3 +32,5 @@ cp components/bootstrap/less/*.less "$STATIC_ROOT/less/"
 cp components/bootstrap/img/*.png "$STATIC_ROOT/img/"
 
 rm -rf components
+
+pip install -r requirements.txt
