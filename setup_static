@@ -28,8 +28,6 @@ mkdir -p "$STATIC_ROOT/js"
 mkdir -p "$STATIC_ROOT/css"
 mkdir -p "$STATIC_ROOT/img"
 
-
-
 # jQuery
 if ! [ -a "$STATIC_ROOT/js/jquery-latest.min.js" ]
     then
