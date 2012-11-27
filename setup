@@ -1,26 +1,36 @@
 #!/bin/bash
-## Downloads the static files
 
 ## Versions
 BOOTSTRAP_VERSION="2.2.1"
 
-## First, we grab the static files location.  
-## We ASSUME this is in the folder that settings exists in.
-if  ! [  -a manage.py ] 
-    then
-        echo "Your location is bad and you should feel bad."
-        exit
+# Make sure we are in the root directory where the setup executable lives
+if [ "`echo $0 | cut -c1`" = "/" ]; then
+  cd `dirname $0`
+else
+  cd `pwd`/`echo $0 | sed -e s/setup//`
 fi
+pwd
 
-ROOT=`find . -name settings.py | perl -ne'/\/([A-Za-z0-9_]*)\/settings.py/ && print $1'`
+## Check for required executables
+for ex in virtualenv bower pip python2.7
+do
+    command -v $ex >/dev/null 2>&1 || { echo >&2 "Executable '$ex' is required but not installed.  Aborting."; exit 1; }
+done
 
-if [ -z $ROOT ] 
-    then
-        echo "Settings not found! Exiting."
-        exit
-fi
+# Check for normal files we expect
+for f in manage.py requirements.txt django_base/settings.py
+do
+  if [ ! -e $f ];
+  then
+    echo "File $f not found.  Aborting"
+      exit 1;
+  fi
+done
 
-STATIC_ROOT="./$ROOT/static"
+STATIC_ROOT="./django_base/static"
+
+virtualenv --python=`which python2.7` ./.env --no-site-packages
+source .env/bin/activate
 
 mkdir -p "$STATIC_ROOT/js"
 mkdir -p "$STATIC_ROOT/less"
