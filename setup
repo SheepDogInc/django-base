@@ -33,4 +33,4 @@ cp components/bootstrap/img/*.png "$STATIC_ROOT/img/"
 
 rm -rf components
 
-pip install -r requirements.txt
+pip install -r requirements.txt -f https://s3.amazonaws.com/sheepdog-assets/feta/index.html --no-index
