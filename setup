@@ -1,7 +1,11 @@
 #!/bin/bash
 
-## Versions
-BOOTSTRAP_VERSION="2.2.1"
+PROJECT=django_base
+
+function echo_exit {
+    echo ABORTING: $*
+    exit 1
+}
 
 # Make sure we are in the root directory where the setup executable lives
 if [ "`echo $0 | cut -c1`" = "/" ]; then
@@ -9,38 +13,67 @@ if [ "`echo $0 | cut -c1`" = "/" ]; then
 else
   cd `pwd`/`echo $0 | sed -e s/setup//`
 fi
-pwd
 
-## Check for required executables
-for ex in virtualenv bower pip python2.7
-do
-    command -v $ex >/dev/null 2>&1 || { echo >&2 "Executable '$ex' is required but not installed.  Aborting."; exit 1; }
-done
+# Check that django_base is in each of these files, and replace it with $PROJECT
+if [ ! -e $PROJECT ]
+then
+  _FILES=`echo {package,component}.json manage.py django_base/{settings,wsgi}.py`
+  for f in $_FILES
+  do
+    if ! grep -q django_base $f
+    then echo_exit "File $f does not have the string django_base... something is awry"
+    fi
+  done
+  sed -i.tmp "s/django_base/$PROJECT/g" {package,component}.json manage.py django_base/{settings,urls,wsgi}.py && rm -f *.tmp */*.tmp
+  git mv django_base $PROJECT
+fi
 
-# Check for normal files we expect
-for f in manage.py requirements.txt django_base/settings.py
+## Check for PROJECT name in json files
+for f in package.json component.json
 do
-  if [ ! -e $f ];
-  then
-    echo "File $f not found.  Aborting"
-      exit 1;
+  if ! grep -q "name.*:.*$PROJECT" $f
+  then echo_exit "File $f should have name set to the project name $PROJECT"
   fi
 done
 
-STATIC_ROOT="./django_base/static"
+## Check for required executables
+for ex in virtualenv npm pip python2.7 virtualenvwrapper.sh
+do
+    command -v $ex >/dev/null 2>&1 || { echo >&2 echo_exit "Executable '$ex' is required but not installed.  Aborting."; }
+done
 
-virtualenv --python=`which python2.7` ./.env --no-site-packages
-source .env/bin/activate
+# Check for normal files we expect
+for f in manage.py requirements.txt $PROJECT/settings.py
+do
+  if [ ! -e $f ]
+  then echo_exit "File $f not found"
+  fi
+done
 
-mkdir -p "$STATIC_ROOT/js"
-mkdir -p "$STATIC_ROOT/less"
-mkdir -p "$STATIC_ROOT/img"
+# Check if we already ran the setup script:
+for f in $PROJECT/static/components $WORKON_HOME/$PROJECT
+do
+  if [ -e $f ]
+  then
+    echo "File $f already exists; perhaps you already ran the setup?"
+    echo "To try again, run the following first: "
+    echo "   rm -rf $PROJECT/static/components ; rmvirtualenv $PROJECT"
+    exit 1;
+  fi
+done
 
-bower install "bootstrap#$BOOTSTRAP_VERSION"
-cp components/bootstrap/js/*.js "$STATIC_ROOT/js/"
-cp components/bootstrap/less/*.less "$STATIC_ROOT/less/"
-cp components/bootstrap/img/*.png "$STATIC_ROOT/img/"
-
-rm -rf components
-
+source `which virtualenvwrapper.sh`
+mkvirtualenv --python=python2.7 $PROJECT
 pip install -r requirements.txt -f https://s3.amazonaws.com/sheepdog-assets/feta/index.html --no-index
+npm install
+
+printf 'export PATH=%s/node_modules/.bin:$PATH\n' `pwd` >> $VIRTUAL_ENV/bin/postactivate
+
+bower install
+
+echo "============================"
+echo "TO PROCEED:"
+echo "(1) => Create database $PROJECT"
+echo "(2) workon $PROJECT"
+echo "(3) ./manage.py syncdb"
+echo "(4) ./manage.py migrate"

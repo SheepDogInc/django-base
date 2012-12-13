@@ -1,5 +1,9 @@
 dev.db
 *.pyc
-env
-.env
+static_collected/
+components/
+node_modules/
+settings_local.py
 
+.*
+ !/.gitignore
