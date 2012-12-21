@@ -151,7 +151,7 @@ INSTALLED_APPS = (
     'compressor',
     'crispy_forms',
     'south',
-    'gunicorn'
+    'gunicorn',
 )
 
 # A sample logging configuration. The only tangible logging
