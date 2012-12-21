@@ -69,6 +69,10 @@ npm install
 
 printf 'export PATH=%s/node_modules/.bin:$PATH\n' `pwd` >> $VIRTUAL_ENV/bin/postactivate
 
+ln -s $VIRTUAL_ENV .env
+ln -s $VIRTUAL_ENV/lib/python2.7/site-packages/ .env-packages
+ln -s $VIRTUAL_ENV/lib/python2.7/site-packages/django/ .env-django
+
 bower install
 
 echo "============================"
