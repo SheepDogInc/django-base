@@ -1,14 +1,19 @@
-# Django settings for django_base project.
-import os
-import sys
+"""
+Base settings for development.
 
-ROOT = os.path.dirname(os.path.realpath(__file__))
-TEST = 'test' in sys.argv
+You will need to create a settings_local.py that imports this file.
+Then make sure you add --settings=settings_local when running manage.py commands.
+"""
+
+import os
 
 PROJECT_NAME = 'django_base'
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -18,8 +23,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': PROJECT_NAME,                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -52,7 +57,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(ROOT, '..', 'media')
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -63,7 +68,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(ROOT, '..', 'static')
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static_collected')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -74,7 +79,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(ROOT, 'static')
+    os.path.join(PROJECT_DIR, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -83,10 +88,11 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'k*3h^w%n1j7k6t33!#4^6p3((!c%if(6s=t@!son1!qp0oc&amp;z('
+SECRET_KEY = 'i#^(_q^#h$_&amp;b$!m(h-729j8glz$j=vq%ls^05k91-yy6n&amp;+yx'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -95,12 +101,24 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -114,7 +132,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(ROOT, "templates")
+    os.path.join(PROJECT_DIR, 'templates')
 )
 
 INSTALLED_APPS = (
@@ -124,13 +142,16 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admin',
+
     'django_versioned',
     'raven.contrib.django',
+
+    'debug_toolbar',
+    'compressor',
+    'crispy_forms',
     'south',
+    'gunicorn',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -164,3 +185,30 @@ LOGGING = {
 
 SENTRY_DSN = None
 VERSION_FILE = 'VERSION'
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}
+
+
+##### Static files #####
+
+LESS_TEMPLATE = """
+cd $(dirname {infile}); # Set working dir to that of the infile
+echo "@staticUrl: '%s'; $(cat {infile})" | # Inject STATIC_URL as @staticUrl
+lessc - {outfile} # Compile it
+"""
+
+COMPRESS_PRECOMPILERS = (
+    ('text/less', LESS_TEMPLATE % STATIC_URL),
+    ('text/coffeescript', 'coffee --compile --stdio'),
+)
+
+COMPRESS_CSS_FILTER = (
+    'compressor.filters.template.TemplateFilter',
+)
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+
+CRISPY_FAIL_SILENTLY = not DEBUG
