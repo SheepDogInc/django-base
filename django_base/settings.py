@@ -198,7 +198,7 @@ COMPRESS_PRECOMPILERS = (
     ('text/coffeescript', 'coffee --compile --stdio'),
 )
 
-COMPRESS_CSS_FILTER = (
+COMPRESS_CSS_FILTERS = (
     'compressor.filters.template.TemplateFilter',
 )
 
