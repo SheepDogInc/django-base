@@ -193,14 +193,8 @@ DEBUG_TOOLBAR_CONFIG = {
 
 ##### Static files #####
 
-LESS_TEMPLATE = """
-cd $(dirname {infile}); # Set working dir to that of the infile
-echo "@staticUrl: '%s'; $(cat {infile})" | # Inject STATIC_URL as @staticUrl
-lessc - {outfile} # Compile it
-"""
-
 COMPRESS_PRECOMPILERS = (
-    ('text/less', LESS_TEMPLATE % STATIC_URL),
+    ('text/less', 'lessc {infile} {outfile}'),
     ('text/coffeescript', 'coffee --compile --stdio'),
 )
 
