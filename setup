@@ -1,6 +1,9 @@
 #!/bin/bash
 
-PROJECT=django_base
+read -p "Project name for env and main project dir (django_base)? " PROJECT
+if [ -z "$PROJECT" ]; then
+    PROJECT=django_base
+fi
 
 function echo_exit {
     echo ABORTING: $*
