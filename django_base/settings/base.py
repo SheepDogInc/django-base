@@ -10,7 +10,7 @@ import os
 PROJECT_NAME = 'django_base'
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 INTERNAL_IPS = ('127.0.0.1',)
@@ -185,11 +185,6 @@ LOGGING = {
 
 SENTRY_DSN = None
 VERSION_FILE = 'VERSION'
-
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-}
-
 
 ##### Static files #####
 
