@@ -20,14 +20,14 @@ fi
 # Check that django_base is in each of these files, and replace it with $PROJECT
 if [ ! -e $PROJECT ]
 then
-  _FILES=`echo {package,bower}.json manage.py django_base/{settings,wsgi}.py`
+  _FILES=`echo {package,bower}.json manage.py django_base/{settings/base,wsgi}.py`
   for f in $_FILES
   do
     if ! grep -q django_base $f
     then echo_exit "File $f does not have the string django_base... something is awry"
     fi
   done
-  sed -i.tmp "s/django_base/$PROJECT/g" {package,bower}.json manage.py django_base/{settings,urls,wsgi}.py && rm -f *.tmp */*.tmp
+  sed -i.tmp "s/django_base/$PROJECT/g" {package,bower}.json manage.py django_base/{settings/base,urls,wsgi}.py && rm -f *.tmp */*.tmp
   git mv django_base $PROJECT
 fi
 
@@ -46,7 +46,7 @@ do
 done
 
 # Check for normal files we expect
-for f in manage.py requirements.txt $PROJECT/settings.py
+for f in manage.py requirements.txt $PROJECT/settings/base.py
 do
   if [ ! -e $f ]
   then echo_exit "File $f not found"
@@ -66,7 +66,7 @@ do
 done
 
 # Replace secret key on project
-sed -i.tmp "s%SECRET_KEY = ['][^']*[']%SECRET_KEY = '`openssl rand -base64 48`'%g" django_base/settings.py && rm -f *.tmp */*.tmp
+sed -i.tmp "s%SECRET_KEY = ['][^']*[']%SECRET_KEY = '`openssl rand -base64 48`'%g" django_base/settings/base.py && rm -f *.tmp */*.tmp
 
 # Install all dependencies
 source `which virtualenvwrapper.sh`
@@ -87,5 +87,5 @@ echo "============================"
 echo "TO PROCEED:"
 echo "(1) => Create database $PROJECT"
 echo "(2) workon $PROJECT"
-echo "(3) ./manage.py syncdb"
-echo "(4) ./manage.py migrate"
+echo "(3) ./manage.py syncdb --settings=settings.local"
+echo "(4) ./manage.py migrate --settings=settings.local"
