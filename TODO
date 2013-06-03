@@ -1,7 +1,6 @@
 TODO:
 
 - (probably always) bump the Django version (and any other requirements that are out of date)
-- have the setup generate the secret key for the project
 - use the new settings structure (settings module, with base, local, production, etc)
 - add some more fabfile commands for common tasks
 - have the setup ask for a PROJECT name rather than force an edit of the setup file

@@ -63,16 +63,20 @@ do
 done
 
 # Replace secret key on project
-sed -i.tmp "s%THESECRETKEY%`openssl rand -base64 48`%g" django_base/settings.py && rm -f *.tmp */*.tmp
+sed -i.tmp "s%SECRET_KEY = ['][^']*[']%SECRET_KEY = '`openssl rand -base64 48`'%g" django_base/settings.py && rm -f *.tmp */*.tmp
 
-openssl rand -base64 48
-
+# Install all dependencies
 source `which virtualenvwrapper.sh`
 mkvirtualenv --python=python2.7  --no-site-packages $PROJECT
 pip install -r requirements.txt -f https://s3.amazonaws.com/sheepdog-assets/feta/index.html --no-index
 npm install
 
 printf 'export PATH=%s/node_modules/.bin:$PATH\n' `pwd` >> $VIRTUAL_ENV/bin/postactivate
+
+# Warning:  If node is too new a version, you'll get an error; not sure why
+#    TypeError('Arguments to path.join must be strings');
+# See, for example:  https://github.com/1602/compound/issues/462
+# OK with v0.8.21
 
 bower install
 
