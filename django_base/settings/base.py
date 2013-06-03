@@ -8,9 +8,9 @@ Then make sure you add --settings=settings_local when running manage.py commands
 import os
 
 PROJECT_NAME = 'django_base'
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 INTERNAL_IPS = ('127.0.0.1',)
@@ -92,7 +92,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'i#^(_q^#h$_&amp;b$!m(h-729j8glz$j=vq%ls^05k91-yy6n&amp;+yx'
+from ._secret import SECRET_KEY
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -185,11 +185,6 @@ LOGGING = {
 
 SENTRY_DSN = None
 VERSION_FILE = 'VERSION'
-
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-}
-
 
 ##### Static files #####
 

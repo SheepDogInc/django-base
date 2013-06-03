@@ -1,6 +1,9 @@
 #!/bin/bash
 
-PROJECT=django_base
+read -p "Project name for env and main project dir (django_base)? " PROJECT
+if [ -z "$PROJECT" ]; then
+    PROJECT=django_base
+fi
 
 function echo_exit {
     echo ABORTING: $*
@@ -17,19 +20,20 @@ fi
 # Check that django_base is in each of these files, and replace it with $PROJECT
 if [ ! -e $PROJECT ]
 then
-  _FILES=`echo {package,component}.json manage.py django_base/{settings,wsgi}.py`
+  _FILES=`echo {package,bower}.json manage.py django_base/{settings/base,wsgi}.py`
   for f in $_FILES
   do
     if ! grep -q django_base $f
     then echo_exit "File $f does not have the string django_base... something is awry"
     fi
   done
-  sed -i.tmp "s/django_base/$PROJECT/g" {package,component}.json manage.py django_base/{settings,urls,wsgi}.py && rm -f *.tmp */*.tmp
+  sed -i.tmp "s/django_base/$PROJECT/g" {package,bower}.json manage.py django_base/{settings/base,urls,wsgi}.py .bowerrc
+  find . -name '*.tmp' -exec rm -f {} \;
   git mv django_base $PROJECT
 fi
 
 ## Check for PROJECT name in json files
-for f in package.json component.json
+for f in package.json bower.json
 do
   if ! grep -q "name.*:.*$PROJECT" $f
   then echo_exit "File $f should have name set to the project name $PROJECT"
@@ -37,13 +41,13 @@ do
 done
 
 ## Check for required executables
-for ex in virtualenv npm pip python2.7 virtualenvwrapper.sh
+for ex in virtualenv npm pip python2.7 virtualenvwrapper.sh bower
 do
     command -v $ex >/dev/null 2>&1 || { echo >&2 echo_exit "Executable '$ex' is required but not installed.  Aborting."; }
 done
 
 # Check for normal files we expect
-for f in manage.py requirements.txt $PROJECT/settings.py
+for f in manage.py requirements.txt $PROJECT/settings/base.py
 do
   if [ ! -e $f ]
   then echo_exit "File $f not found"
@@ -51,27 +55,33 @@ do
 done
 
 # Check if we already ran the setup script:
-for f in $PROJECT/static/components $WORKON_HOME/$PROJECT
+for f in $PROJECT/static/bower $WORKON_HOME/$PROJECT
 do
   if [ -e $f ]
   then
     echo "File $f already exists; perhaps you already ran the setup?"
     echo "To try again, run the following first: "
-    echo "   rm -rf $PROJECT/static/components ; rmvirtualenv $PROJECT"
+    echo "   rm -rf $PROJECT ; rmvirtualenv $PROJECT ; git reset HEAD ; git checkout . "
     exit 1;
   fi
 done
 
+# Replace secret key on project.tmp
+echo "SECRET_KEY ='`openssl rand -base64 48`'" > $PROJECT/settings/_secret.py
+
+# Install all dependencies
 source `which virtualenvwrapper.sh`
-mkvirtualenv --python=python2.7 $PROJECT
+mkdir -p $PROJECT/static/js
+mkvirtualenv --python=python2.7  --no-site-packages $PROJECT
 pip install -r requirements.txt -f https://s3.amazonaws.com/sheepdog-assets/feta/index.html --no-index
 npm install
 
 printf 'export PATH=%s/node_modules/.bin:$PATH\n' `pwd` >> $VIRTUAL_ENV/bin/postactivate
 
-ln -s $VIRTUAL_ENV .env
-ln -s $VIRTUAL_ENV/lib/python2.7/site-packages/ .env-packages
-ln -s $VIRTUAL_ENV/lib/python2.7/site-packages/django/ .env-django
+# Warning:  If node is too new a version, you'll get an error; not sure why
+#    TypeError('Arguments to path.join must be strings');
+# See, for example:  https://github.com/1602/compound/issues/462
+# OK with v0.8.21
 
 bower install
 
@@ -79,5 +89,5 @@ echo "============================"
 echo "TO PROCEED:"
 echo "(1) => Create database $PROJECT"
 echo "(2) workon $PROJECT"
-echo "(3) ./manage.py syncdb"
-echo "(4) ./manage.py migrate"
+echo "(3) ./manage.py syncdb --settings=settings.local"
+echo "(4) ./manage.py migrate --settings=settings.local"
