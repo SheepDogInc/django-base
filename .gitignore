@@ -3,7 +3,7 @@ dev.db
 static_collected/
 components/
 node_modules/
-settings_local.py
+_secret.py
 
 .*
  !/.gitignore

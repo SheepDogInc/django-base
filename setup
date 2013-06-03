@@ -28,6 +28,7 @@ then
     fi
   done
   sed -i.tmp "s/django_base/$PROJECT/g" {package,bower}.json manage.py django_base/{settings/base,urls,wsgi}.py
+  find . -name '*.tmp' -exec rm -f {} \;
   git mv django_base $PROJECT
 fi
 
@@ -66,10 +67,8 @@ do
 done
 
 # Replace secret key on project.tmp
-sed -i.tmp "s%SECRET_KEY = ['][^']*[']%SECRET_KEY = '`openssl rand -base64 48`'%g" django_base/settings/base.py
+echo "SECRET_KEY ='`openssl rand -base64 48`'" > $PROJECT/settings/_secret.py
 
-# Clean up after sed junk
-find . -name '*.tmp' -exec rm -f {} \;
 
 # Install all dependencies
 source `which virtualenvwrapper.sh`
