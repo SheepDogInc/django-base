@@ -47,7 +47,7 @@ do
 done
 
 # Check for normal files we expect
-for f in manage.py requirements.txt $PROJECT/settings/base.py
+for f in manage.py requirements.txt $PROJECT/settings/base.py .bowerrc
 do
   if [ ! -e $f ]
   then echo_exit "File $f not found"
@@ -69,9 +69,9 @@ done
 # Replace secret key on project.tmp
 echo "SECRET_KEY ='`openssl rand -base64 48`'" > $PROJECT/settings/_secret.py
 
-
 # Install all dependencies
 source `which virtualenvwrapper.sh`
+mkdir -p $PROJECT/static/js
 mkvirtualenv --python=python2.7  --no-site-packages $PROJECT
 pip install -r requirements.txt -f https://s3.amazonaws.com/sheepdog-assets/feta/index.html --no-index
 npm install

@@ -8,7 +8,7 @@ Then make sure you add --settings=settings_local when running manage.py commands
 import os
 
 PROJECT_NAME = 'django_base'
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG

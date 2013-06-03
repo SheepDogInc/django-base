@@ -6,4 +6,5 @@ node_modules/
 _secret.py
 
 .*
- !/.gitignore
+!/.bowerrc
+!/.gitignore
