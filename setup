@@ -27,7 +27,7 @@ then
     then echo_exit "File $f does not have the string django_base... something is awry"
     fi
   done
-  sed -i.tmp "s/django_base/$PROJECT/g" {package,bower}.json manage.py django_base/{settings/base,urls,wsgi}.py && rm -f *.tmp */*.tmp
+  sed -i.tmp "s/django_base/$PROJECT/g" {package,bower}.json manage.py django_base/{settings/base,urls,wsgi}.py
   git mv django_base $PROJECT
 fi
 
@@ -65,8 +65,11 @@ do
   fi
 done
 
-# Replace secret key on project
-sed -i.tmp "s%SECRET_KEY = ['][^']*[']%SECRET_KEY = '`openssl rand -base64 48`'%g" django_base/settings/base.py && rm -f *.tmp */*.tmp
+# Replace secret key on project.tmp
+sed -i.tmp "s%SECRET_KEY = ['][^']*[']%SECRET_KEY = '`openssl rand -base64 48`'%g" django_base/settings/base.py
+
+# Clean up after sed junk
+find . -name '*.tmp' -exec rm -f {} \;
 
 # Install all dependencies
 source `which virtualenvwrapper.sh`
