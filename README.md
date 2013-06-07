@@ -16,7 +16,7 @@ Clone & create virtual env:
 
 Install Python & Node dependencies:
 
-    pip install -r requirements.txt
+    pip install -r requirements.txt -f https://s3.amazonaws.com/sheepdog-assets/feta/index.html --no-index
     npm install
 
 Add local Node modules to your `$PATH` in virtualenv's `postactivate` script:
