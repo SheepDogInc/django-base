@@ -4,6 +4,7 @@ static_collected/
 components/
 node_modules/
 _secret.py
+*/static/bower/
 
 .*
 !/.bowerrc
