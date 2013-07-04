@@ -152,6 +152,8 @@ INSTALLED_APPS = (
     'crispy_forms',
     'south',
     'gunicorn',
+
+    'visual_style',
 )
 
 # A sample logging configuration. The only tangible logging
