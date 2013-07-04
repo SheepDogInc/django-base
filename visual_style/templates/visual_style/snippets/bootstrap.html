@@ -1,4 +1,7 @@
 {% load static %}
+<h1>Typography</h1>
+          
+
 <h2 id="headings">Headings</h2>
           
 
@@ -13,6 +16,9 @@
 
           
 
+<h1>h1. Heading 1</h1>
+            
+
 <h2 id="body-copy">Body copy</h2>
           
 
@@ -23,6 +29,9 @@
           </div>
           
 
+<h3>Lead body copy</h3>
+          
+
 <div class="bs-docs-example">
             <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</p>
           </div>
@@ -31,19 +40,31 @@
 <h2 id="emphasis">Emphasis</h2>
           
 
+<h3><code>&lt;small&gt;</code></h3>
+          
+
 <div class="bs-docs-example">
             <p><small>This line of text is meant to be treated as fine print.</small></p>
           </div>
 
+
+<h3>Bold</h3>
+          
 
 <div class="bs-docs-example">
             <p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
           </div>
           
 
+<h3>Italics</h3>
+          
+
 <div class="bs-docs-example">
             <p>The following snippet of text is <em>rendered as italicized text</em>.</p>
           </div>
+          
+
+<h3>Alignment classes</h3>
           
 
 <div class="bs-docs-example">
@@ -52,6 +73,9 @@
             <p class="text-right">Right aligned text.</p>
           </div>
 
+
+<h3>Emphasis classes</h3>
+          
 
 <div class="bs-docs-example">
             <p class="muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
@@ -65,9 +89,15 @@
 <h2 id="abbreviations">Abbreviations</h2>
           
 
+<h3><code>&lt;abbr&gt;</code></h3>
+          
+
 <div class="bs-docs-example">
             <p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
           </div>
+          
+
+<h3><code>&lt;abbr class="initialism"&gt;</code></h3>
           
 
 <div class="bs-docs-example">
@@ -76,6 +106,9 @@
           
 
 <h2 id="addresses">Addresses</h2>
+          
+
+<h3><code>&lt;address&gt;</code></h3>
           
 
 <div class="bs-docs-example">
@@ -93,12 +126,21 @@
 <h2 id="blockquotes">Blockquotes</h2>
           
 
+<h3>Default blockquote</h3>
+          
+
 <div class="bs-docs-example">
             <blockquote>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             </blockquote>
           </div>
 
+
+<h3>Blockquote options</h3>
+          
+
+<h4>Naming a source</h4>
+          
 
 <div class="bs-docs-example">
             <blockquote>
@@ -107,6 +149,9 @@
             </blockquote>
           </div>
 
+
+<h4>Alternate displays</h4>
+          
 
 <div class="bs-docs-example" style="overflow: hidden;">
             <blockquote class="pull-right">
@@ -118,6 +163,9 @@
 
 <h2 id="lists">Lists</h2>
 
+          
+
+<h3>Unordered</h3>
           
 
 <div class="bs-docs-example">
@@ -141,6 +189,9 @@
 </div>
 
 
+<h3>Ordered</h3>
+          
+
 <div class="bs-docs-example">
             <ol>
 <li>Lorem ipsum dolor sit amet</li>
@@ -154,6 +205,9 @@
             </ol>
 </div>
 
+
+<h3>Unstyled</h3>
+        
 
 <div class="bs-docs-example">
           <ul class="unstyled">
@@ -176,6 +230,9 @@
 </div>
 
 
+<h3>Inline</h3>
+        
+
 <div class="bs-docs-example">
           <ul class="inline">
 <li>Lorem ipsum</li>
@@ -184,6 +241,9 @@
           </ul>
 </div>
 
+
+<h3>Description</h3>
+        
 
 <div class="bs-docs-example">
           <dl>
@@ -197,6 +257,9 @@
           </dl>
 </div>
 
+
+<h4>Horizontal description</h4>
+        
 
 <div class="bs-docs-example">
           <dl class="dl-horizontal">
@@ -213,6 +276,9 @@
 </div>
 
 
+<h1>Code</h1>
+          
+
 <h2>Inline</h2>
           
 
@@ -228,6 +294,9 @@
   <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
 </div>
 
+
+<h1>Tables</h1>
+          
 
 <h2>Default styles</h2>
           
@@ -267,6 +336,9 @@
 <h2>Optional classes</h2>
           
 
+<h3><code>.table-striped</code></h3>
+          
+
 <div class="bs-docs-example">
             <table class="table table-striped">
 <thead><tr>
@@ -298,6 +370,9 @@
 </table>
 </div>
 
+
+<h3><code>.table-bordered</code></h3>
+          
 
 <div class="bs-docs-example">
             <table class="table table-bordered">
@@ -335,6 +410,9 @@
 </div>
 
 
+<h3><code>.table-hover</code></h3>
+          
+
 <div class="bs-docs-example">
             <table class="table table-hover">
 <thead><tr>
@@ -365,6 +443,9 @@
 </table>
 </div>
 
+
+<h3><code>.table-condensed</code></h3>
+          
 
 <div class="bs-docs-example">
             <table class="table table-condensed">
@@ -438,6 +519,533 @@
 </div>
 
 
+<h1>Forms</h1>
+          
+
+<h2>Default styles</h2>
+          
+
+<form class="bs-docs-example">
+            <fieldset>
+<legend>Legend</legend>
+              <label>Label name</label>
+              <input type="text" placeholder="Type something&#226;&#128;&#166;"><span class="help-block">Example block-level help text here.</span>
+              <label class="checkbox">
+                <input type="checkbox"> Check me out
+              </label>
+              <button type="submit" class="btn">Submit</button>
+            </fieldset>
+</form>
+
+
+<h2>Optional layouts</h2>
+          
+
+<h3>Search form</h3>
+          
+
+<form class="bs-docs-example form-search">
+            <input type="text" class="input-medium search-query"><button type="submit" class="btn">Search</button>
+          </form>
+
+
+<h3>Inline form</h3>
+          
+
+<form class="bs-docs-example form-inline">
+            <input type="text" class="input-small" placeholder="Email"><input type="password" class="input-small" placeholder="Password"><label class="checkbox">
+              <input type="checkbox"> Remember me
+            </label>
+            <button type="submit" class="btn">Sign in</button>
+          </form>
+
+
+<h3>Horizontal form</h3>
+          
+
+<form class="bs-docs-example form-horizontal">
+            <div class="control-group">
+              <label class="control-label" for="inputEmail">Email</label>
+              <div class="controls">
+                <input type="text" id="inputEmail" placeholder="Email">
+</div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputPassword">Password</label>
+              <div class="controls">
+                <input type="password" id="inputPassword" placeholder="Password">
+</div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <label class="checkbox">
+                  <input type="checkbox"> Remember me
+                </label>
+                <button type="submit" class="btn">Sign in</button>
+              </div>
+            </div>
+          </form>
+
+
+<h2>Supported form controls</h2>
+          
+
+<h3>Inputs</h3>
+          
+
+<form class="bs-docs-example form-inline">
+            <input type="text" placeholder="Text input">
+</form>
+
+
+<h3>Textarea</h3>
+          
+
+<form class="bs-docs-example form-inline">
+            <textarea rows="3"></textarea>
+</form>
+
+
+<h3>Checkboxes and radios</h3>
+          
+
+<h4>Default (stacked)</h4>
+          
+
+<form class="bs-docs-example">
+            <label class="checkbox">
+              <input type="checkbox" value="">
+              Option one is this and that&#8212;be sure to include why it's great
+            </label>
+            <br><label class="radio">
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+              Option one is this and that&#8212;be sure to include why it's great
+            </label>
+            <label class="radio">
+              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+              Option two can be something else and selecting it will deselect option one
+            </label>
+          </form>
+
+
+<h4>Inline checkboxes</h4>
+          
+
+<form class="bs-docs-example">
+            <label class="checkbox inline">
+              <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+            </label>
+            <label class="checkbox inline">
+              <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+            </label>
+            <label class="checkbox inline">
+              <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+            </label>
+          </form>
+
+
+<h3>Selects</h3>
+          
+
+<form class="bs-docs-example">
+            <select><option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option></select><br><select multiple><option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option></select>
+</form>
+
+
+<h2>Extending form controls</h2>
+          
+
+<h3>Prepended and appended inputs</h3>
+          
+
+<h4>Default options</h4>
+          
+
+<form class="bs-docs-example">
+            <div class="input-prepend">
+              <span class="add-on">@</span>
+              <input class="span2" id="prependedInput" type="text" placeholder="Username">
+</div>
+            <br><div class="input-append">
+              <input class="span2" id="appendedInput" type="text"><span class="add-on">.00</span>
+            </div>
+          </form>
+
+
+<h4>Combined</h4>
+          
+
+<form class="bs-docs-example form-inline">
+            <div class="input-prepend input-append">
+              <span class="add-on">$</span>
+              <input class="span2" id="appendedPrependedInput" type="text"><span class="add-on">.00</span>
+            </div>
+          </form>
+
+
+<h4>Buttons instead of text</h4>
+          
+
+<form class="bs-docs-example">
+            <div class="input-append">
+              <input class="span2" id="appendedInputButton" type="text"><button class="btn" type="button">Go!</button>
+            </div>
+          </form>
+
+
+<form class="bs-docs-example">
+            <div class="input-append">
+              <input class="span2" id="appendedInputButtons" type="text"><button class="btn" type="button">Search</button>
+              <button class="btn" type="button">Options</button>
+            </div>
+          </form>
+
+
+<h4>Button dropdowns</h4>
+          
+
+<form class="bs-docs-example">
+            <div class="input-append">
+              <input class="span2" id="appendedDropdownButton" type="text"><div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+<li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+</div>
+<!-- /btn-group -->
+            </div>
+<!-- /input-append -->
+          </form>
+
+
+<form class="bs-docs-example">
+            <div class="input-prepend">
+              <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+<li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+</div>
+<!-- /btn-group -->
+              <input class="span2" id="prependedDropdownButton" type="text">
+</div>
+<!-- /input-prepend -->
+          </form>
+
+
+<form class="bs-docs-example">
+            <div class="input-prepend input-append">
+              <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+<li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+</div>
+<!-- /btn-group -->
+              <input class="span2" id="appendedPrependedDropdownButton" type="text"><div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+<li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+</div>
+<!-- /btn-group -->
+            </div>
+<!-- /input-prepend input-append -->
+          </form>
+
+
+<h4>Segmented dropdown groups</h4>
+          
+
+<form class="bs-docs-example">
+            <div class="input-prepend">
+              <div class="btn-group">
+                <button class="btn" tabindex="-1">Action</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+<li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+</div>
+              <input type="text">
+</div>
+            <div class="input-append">
+              <input type="text"><div class="btn-group">
+                <button class="btn" tabindex="-1">Action</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+<li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+</div>
+            </div>
+          </form>
+
+
+<h4>Search form</h4>
+          
+
+<form class="bs-docs-example form-search">
+            <div class="input-append">
+              <input type="text" class="span2 search-query"><button type="submit" class="btn">Search</button>
+            </div>
+            <div class="input-prepend">
+              <button type="submit" class="btn">Search</button>
+              <input type="text" class="span2 search-query">
+</div>
+          </form>
+
+
+<h3>Control sizing</h3>
+          
+
+<h4>Block level inputs</h4>
+          
+
+<form class="bs-docs-example" style="padding-bottom: 15px;">
+            <div class="controls">
+              <input class="input-block-level" type="text" placeholder=".input-block-level">
+</div>
+          </form>
+
+
+<h4>Relative sizing</h4>
+          
+
+<form class="bs-docs-example" style="padding-bottom: 15px;">
+            <div class="controls docs-input-sizes">
+              <input class="input-mini" type="text" placeholder=".input-mini"><input class="input-small" type="text" placeholder=".input-small"><input class="input-medium" type="text" placeholder=".input-medium"><input class="input-large" type="text" placeholder=".input-large"><input class="input-xlarge" type="text" placeholder=".input-xlarge"><input class="input-xxlarge" type="text" placeholder=".input-xxlarge">
+</div>
+          </form>
+
+
+<h4>Grid sizing</h4>
+          
+
+<form class="bs-docs-example" style="padding-bottom: 15px;">
+            <div class="controls docs-input-sizes">
+              <input class="span1" type="text" placeholder=".span1"><input class="span2" type="text" placeholder=".span2"><input class="span3" type="text" placeholder=".span3"><select class="span1"><option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option></select><select class="span2"><option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option></select><select class="span3"><option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option></select>
+</div>
+          </form>
+
+
+<form class="bs-docs-example" style="padding-bottom: 15px;">
+            <div class="controls">
+              <input class="span5" type="text" placeholder=".span5">
+</div>
+            <div class="controls controls-row">
+              <input class="span4" type="text" placeholder=".span4"><input class="span1" type="text" placeholder=".span1">
+</div>
+            <div class="controls controls-row">
+              <input class="span3" type="text" placeholder=".span3"><input class="span2" type="text" placeholder=".span2">
+</div>
+            <div class="controls controls-row">
+              <input class="span2" type="text" placeholder=".span2"><input class="span3" type="text" placeholder=".span3">
+</div>
+            <div class="controls controls-row">
+              <input class="span1" type="text" placeholder=".span1"><input class="span4" type="text" placeholder=".span4">
+</div>
+          </form>
+
+
+<h3>Uneditable inputs</h3>
+          
+
+<form class="bs-docs-example">
+            <span class="input-xlarge uneditable-input">Some value here</span>
+          </form>
+
+
+<h3>Form actions</h3>
+          
+
+<form class="bs-docs-example">
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn">Cancel</button>
+            </div>
+          </form>
+
+
+<h3>Help text</h3>
+          
+
+<h4>Inline help</h4>
+          
+
+<form class="bs-docs-example form-inline">
+            <input type="text"><span class="help-inline">Inline help text</span>
+          </form>
+
+
+<h4>Block help</h4>
+          
+
+<form class="bs-docs-example form-inline">
+            <input type="text"><span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </form>
+
+
+<h2>Form control states</h2>
+          
+
+<h3>Input focus</h3>
+          
+
+<form class="bs-docs-example form-inline">
+            <input class="input-xlarge focused" id="focusedInput" type="text" value="This is focused...">
+</form>
+
+
+<h3>Invalid inputs</h3>
+          
+
+<form class="bs-docs-example form-inline">
+            <input class="span3" type="email" placeholder="test@example.com" required>
+</form>
+
+
+<h3>Disabled inputs</h3>
+          
+
+<form class="bs-docs-example form-inline">
+            <input class="input-xlarge" id="disabledInput" type="text" placeholder="Disabled input here&#226;&#128;&#166;" disabled>
+</form>
+
+
+<h3>Validation states</h3>
+          
+
+<form class="bs-docs-example form-horizontal">
+            <div class="control-group warning">
+              <label class="control-label" for="inputWarning">Input with warning</label>
+              <div class="controls">
+                <input type="text" id="inputWarning"><span class="help-inline">Something may have gone wrong</span>
+              </div>
+            </div>
+            <div class="control-group error">
+              <label class="control-label" for="inputError">Input with error</label>
+              <div class="controls">
+                <input type="text" id="inputError"><span class="help-inline">Please correct the error</span>
+              </div>
+            </div>
+            <div class="control-group info">
+              <label class="control-label" for="inputInfo">Input with info</label>
+              <div class="controls">
+                <input type="text" id="inputInfo"><span class="help-inline">Username is taken</span>
+              </div>
+            </div>
+            <div class="control-group success">
+              <label class="control-label" for="inputSuccess">Input with success</label>
+              <div class="controls">
+                <input type="text" id="inputSuccess"><span class="help-inline">Woohoo!</span>
+              </div>
+            </div>
+          </form>
+
+
+<h1>Buttons</h1>
+          
+
+<h2>Default buttons</h2>
+          
+
+<table class="table table-bordered table-striped">
+<thead><tr>
+<th>Button</th>
+                <th>class=""</th>
+                <th>Description</th>
+              </tr></thead>
+<tbody>
+<tr>
+<td><button type="button" class="btn">Default</button></td>
+                <td><code>btn</code></td>
+                <td>Standard gray button with gradient</td>
+              </tr>
+<tr>
+<td><button type="button" class="btn btn-primary">Primary</button></td>
+                <td><code>btn btn-primary</code></td>
+                <td>Provides extra visual weight and identifies the primary action in a set of buttons</td>
+              </tr>
+<tr>
+<td><button type="button" class="btn btn-info">Info</button></td>
+                <td><code>btn btn-info</code></td>
+                <td>Used as an alternative to the default styles</td>
+              </tr>
+<tr>
+<td><button type="button" class="btn btn-success">Success</button></td>
+                <td><code>btn btn-success</code></td>
+                <td>Indicates a successful or positive action</td>
+              </tr>
+<tr>
+<td><button type="button" class="btn btn-warning">Warning</button></td>
+                <td><code>btn btn-warning</code></td>
+                <td>Indicates caution should be taken with this action</td>
+              </tr>
+<tr>
+<td><button type="button" class="btn btn-danger">Danger</button></td>
+                <td><code>btn btn-danger</code></td>
+                <td>Indicates a dangerous or potentially negative action</td>
+              </tr>
+<tr>
+<td><button type="button" class="btn btn-inverse">Inverse</button></td>
+                <td><code>btn btn-inverse</code></td>
+                <td>Alternate dark gray button, not tied to a semantic action or use</td>
+              </tr>
+<tr>
+<td><button type="button" class="btn btn-link">Link</button></td>
+                <td><code>btn btn-link</code></td>
+                <td>Deemphasize a button by making it look like a link while maintaining button behavior</td>
+              </tr>
+</tbody>
+</table>
+
 <h2>Button sizes</h2>
           
 
@@ -469,12 +1077,57 @@
           </div>
 
 
+<h2>Disabled state</h2>
+          
+
+<h3>Anchor element</h3>
+          
+
+<p class="bs-docs-example">
+            <a href="#" class="btn btn-large btn-primary disabled">Primary link</a>
+            <a href="#" class="btn btn-large disabled">Link</a>
+          </p>
+
+
+<h3>Button element</h3>
+          
+
+<p class="bs-docs-example">
+            <button type="button" class="btn btn-large btn-primary disabled" disabled>Primary button</button>
+            <button type="button" class="btn btn-large" disabled>Button</button>
+          </p>
+
+
+<h2>One class, multiple tags</h2>
+          
+
+<form class="bs-docs-example">
+            <a class="btn" href="">Link</a>
+            <button class="btn" type="submit">Button</button>
+            <input class="btn" type="button" value="Input"><input class="btn" type="submit" value="Submit">
+</form>
+
+
+<h1>Images</h1>
+          
+
 <div class="bs-docs-example bs-docs-example-images">
             <img data-src="holder.js/140x140" class="img-rounded"><img data-src="holder.js/140x140" class="img-circle"><img data-src="holder.js/140x140" class="img-polaroid">
 </div>
 
 
+<h1>Icons <small>by <a href="http://glyphicons.com" target="_blank">Glyphicons</a></small>
+</h1>
+          
+
 <h2>Icon examples</h2>
+          
+
+<h4>Buttons</h4>
+
+          
+
+<h5>Button group in a button toolbar</h5>
           
 
 <div class="bs-docs-example">
@@ -488,6 +1141,9 @@
             </div>
           </div>
 
+
+<h5>Dropdown in a button group</h5>
+          
 
 <div class="bs-docs-example">
             <div class="btn-group">
@@ -504,12 +1160,18 @@
           </div>
 
 
+<h5>Button sizes</h5>
+          
+
 <div class="bs-docs-example">
             <a class="btn btn-large" href="#"><i class="icon-star"></i> Star</a>
             <a class="btn btn-small" href="#"><i class="icon-star"></i> Star</a>
             <a class="btn btn-mini" href="#"><i class="icon-star"></i> Star</a>
           </div>
 
+
+<h4>Navigation</h4>
+          
 
 <div class="bs-docs-example">
             <div class="well" style="padding: 8px 0; margin-bottom: 0;">
@@ -523,7 +1185,25 @@
           </div>
 
 
-<h2>Dropdown menus</h2>
+<h4>Form fields</h4>
+          
+
+<form class="bs-docs-example form-horizontal">
+            <div class="control-group">
+              <label class="control-label" for="inputIcon">Email address</label>
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"><i class="icon-envelope"></i></span><input class="span2" id="inputIcon" type="text">
+</div>
+              </div>
+            </div>
+          </form>
+
+
+<h1>Dropdown menus</h1>
+          
+
+<h2>Example</h2>
           
 
 <div class="bs-docs-example">
@@ -542,6 +1222,9 @@
 <h2>Options</h2>
           
 
+<h3>Disabled menu options</h3>
+          
+
 <div class="bs-docs-example">
             <div class="dropdown clearfix">
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
@@ -552,6 +1235,9 @@
 </div>
           </div>
 
+
+<h3>Sub menus on dropdowns</h3>
+          
 
 <div class="bs-docs-example bs-docs-example-submenus">
 
@@ -624,7 +1310,13 @@
           </div>
 
 
-<h2>Button groups</h2>
+<h1>Button groups</h1>
+          
+
+<h2>Examples</h2>
+          
+
+<h3>Single button group</h3>
           
 
 <div class="bs-docs-example">
@@ -635,6 +1327,9 @@
             </div>
           </div>
 
+
+<h3>Multiple button groups</h3>
+          
 
 <div class="bs-docs-example">
             <div class="btn-toolbar" style="margin: 0;">
@@ -656,6 +1351,9 @@
           </div>
 
 
+<h3>Vertical button groups</h3>
+          
+
 <div class="bs-docs-example">
             <div class="btn-group btn-group-vertical">
               <button type="button" class="btn"><i class="icon-align-left"></i></button>
@@ -665,6 +1363,9 @@
             </div>
           </div>
 
+
+<h1>Button dropdown menus</h1>
+          
 
 <h2>Overview and examples</h2>
           
@@ -752,6 +1453,9 @@
 <!-- /btn-toolbar -->
           </div>
 
+
+<h3>Works with all button sizes</h3>
+          
 
 <div class="bs-docs-example">
             <div class="btn-toolbar" style="margin: 0;">
@@ -888,6 +1592,9 @@
           </div>
 
 
+<h3>Sizes</h3>
+          
+
 <div class="bs-docs-example">
             <div class="btn-toolbar">
               <div class="btn-group">
@@ -937,6 +1644,9 @@
           </div>
 
 
+<h3>Dropup menus</h3>
+          
+
 <div class="bs-docs-example">
             <div class="btn-toolbar" style="margin: 0;">
               <div class="btn-group dropup">
@@ -967,8 +1677,14 @@
           </div>
 
 
+<h1>Nav: tabs, pills, and lists</h1>
+          
+
 <h2>Lightweight defaults <small>Same markup, different classes</small>
 </h2>
+          
+
+<h3>Basic tabs</h3>
           
 
 <div class="bs-docs-example">
@@ -980,6 +1696,9 @@
 </div>
 
 
+<h3>Basic pills</h3>
+          
+
 <div class="bs-docs-example">
             <ul class="nav nav-pills">
 <li class="active"><a href="#">Home</a></li>
@@ -988,6 +1707,9 @@
             </ul>
 </div>
 
+
+<h3>Disabled state</h3>
+          
 
 <div class="bs-docs-example">
             <ul class="nav nav-pills">
@@ -1001,6 +1723,9 @@
 <h2>Stackable</h2>
           
 
+<h3>Stacked tabs</h3>
+          
+
 <div class="bs-docs-example">
             <ul class="nav nav-tabs nav-stacked">
 <li class="active"><a href="#">Home</a></li>
@@ -1009,6 +1734,9 @@
             </ul>
 </div>
 
+
+<h3>Stacked pills</h3>
+          
 
 <div class="bs-docs-example">
             <ul class="nav nav-pills nav-stacked">
@@ -1020,6 +1748,9 @@
 
 
 <h2>Dropdowns</h2>
+          
+
+<h3>Tabs with dropdowns</h3>
           
 
 <div class="bs-docs-example">
@@ -1039,6 +1770,9 @@
             </ul>
 </div>
 
+
+<h3>Pills with dropdowns</h3>
+          
 
 <div class="bs-docs-example">
             <ul class="nav nav-pills">
@@ -1061,6 +1795,9 @@
 <h2>Nav lists</h2>
           
 
+<h3>Example nav list</h3>
+          
+
 <div class="bs-docs-example">
             <div class="well" style="max-width: 340px; padding: 8px 0;">
               <ul class="nav nav-list">
@@ -1079,6 +1816,9 @@
 
 
 <h2>Tabbable nav</h2>
+          
+
+<h3>Tabbable example</h3>
           
 
 <div class="bs-docs-example">
@@ -1103,6 +1843,13 @@
           </div>
 
 
+<h3>Tabbable in any direction</h3>
+
+          
+
+<h4>Tabs on the bottom</h4>
+          
+
 <div class="bs-docs-example">
             <div class="tabbable tabs-below">
               <div class="tab-content">
@@ -1124,6 +1871,9 @@
 </div> <!-- /tabbable -->
           </div>
 
+
+<h4>Tabs on the left</h4>
+          
 
 <div class="bs-docs-example">
             <div class="tabbable tabs-left">
@@ -1147,6 +1897,9 @@
           </div>
 
 
+<h4>Tabs on the right</h4>
+          
+
 <div class="bs-docs-example">
             <div class="tabbable tabs-right">
               <ul class="nav nav-tabs">
@@ -1169,6 +1922,9 @@
           </div>
 
 
+<h1>Navbar</h1>
+          
+
 <h2>Basic navbar</h2>
           
 
@@ -1190,6 +1946,9 @@
 
           
 
+<h3>Brand</h3>
+          
+
 <div class="bs-docs-example">
             <div class="navbar">
               <div class="navbar-inner">
@@ -1199,6 +1958,9 @@
           </div>
 
 
+<h3>Nav links</h3>
+          
+
 <div class="bs-docs-example">
             <div class="navbar">
               <div class="navbar-inner">
@@ -1227,6 +1989,9 @@
             </div>
           </div>
 
+
+<h3>Forms</h3>
+          
 
 <div class="bs-docs-example">
             <div class="navbar">
@@ -1238,6 +2003,9 @@
             </div>
           </div>
 
+
+<h3>Search form</h3>
+          
 
 <div class="bs-docs-example">
             <div class="navbar">
@@ -1251,6 +2019,9 @@
 
 
 <h2>Optional display variations</h2>
+          
+
+<h3>Fixed to top</h3>
           
 
 <div class="bs-docs-example bs-navbar-top-example">
@@ -1269,6 +2040,9 @@
           </div>
 
 
+<h3>Fixed to bottom</h3>
+          
+
 <div class="bs-docs-example bs-navbar-bottom-example">
             <div class="navbar navbar-fixed-bottom" style="position: absolute;">
               <div class="navbar-inner">
@@ -1284,6 +2058,9 @@
             </div>
           </div>
 
+
+<h3>Static top navbar</h3>
+          
 
 <div class="bs-docs-example bs-navbar-top-example">
             <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
@@ -1417,7 +2194,11 @@
           </div>
 
 
-<h2>Breadcrumbs</h2>
+<h1>Breadcrumbs <small></small>
+</h1>
+          
+
+<h2>Examples</h2>
           
 
 <div class="bs-docs-example">
@@ -1442,6 +2223,10 @@
 </div>
 
 
+<h1>Pagination <small>Two options for paging through content</small>
+</h1>
+          
+
 <h2>Standard pagination</h2>
           
 
@@ -1464,6 +2249,9 @@
 
           
 
+<h3>Disabled and active states</h3>
+          
+
 <div class="bs-docs-example">
             <div class="pagination pagination-centered">
               <ul>
@@ -1478,6 +2266,9 @@
 </div>
           </div>
 
+
+<h3>Sizes</h3>
+          
 
 <div class="bs-docs-example">
             <div class="pagination pagination-large">
@@ -1527,6 +2318,9 @@
           </div>
 
 
+<h3>Alignment</h3>
+          
+
 <div class="bs-docs-example">
             <div class="pagination pagination-centered">
               <ul>
@@ -1560,6 +2354,9 @@
 <h2>Pager</h2>
           
 
+<h3>Default example</h3>
+          
+
 <div class="bs-docs-example">
             <ul class="pager">
 <li><a href="#">Previous</a></li>
@@ -1567,6 +2364,9 @@
             </ul>
 </div>
 
+
+<h3>Aligned links</h3>
+          
 
 <div class="bs-docs-example">
             <ul class="pager">
@@ -1576,6 +2376,9 @@
 </div>
 
 
+<h3>Optional disabled state</h3>
+          
+
 <div class="bs-docs-example">
             <ul class="pager">
 <li class="previous disabled"><a href="#">&#8592; Older</a></li>
@@ -1583,6 +2386,9 @@
             </ul>
 </div>
 
+
+<h1>Typographic components</h1>
+          
 
 <h2>Hero unit</h2>
           
@@ -1596,6 +2402,9 @@
           </div>
 
 
+<h1>Hello, world!</h1>
+              
+
 <h2>Page header</h2>
           
 
@@ -1606,6 +2415,10 @@
             </div>
           </div>
 
+
+<h1>Alerts <small>Styles for success, warning, and error messages</small>
+</h1>
+          
 
 <h2>Default alert</h2>
           
@@ -1633,6 +2446,9 @@
 <h2>Contextual alternatives</h2>
           
 
+<h3>Error or danger</h3>
+          
+
 <div class="bs-docs-example">
             <div class="alert alert-error">
               <button type="button" class="close" data-dismiss="alert">&#215;</button>
@@ -1640,6 +2456,9 @@
             </div>
           </div>
 
+
+<h3>Success</h3>
+          
 
 <div class="bs-docs-example">
             <div class="alert alert-success">
@@ -1649,6 +2468,9 @@
           </div>
 
 
+<h3>Information</h3>
+          
+
 <div class="bs-docs-example">
             <div class="alert alert-info">
               <button type="button" class="close" data-dismiss="alert">&#215;</button>
@@ -1657,8 +2479,15 @@
           </div>
 
 
-<h2>Progress bars</h2>
+<h1>Progress bars <small>For loading, redirecting, or action status</small>
+</h1>
+          
 
+<h2>Examples and markup</h2>
+
+          
+
+<h3>Basic</h3>
           
 
 <div class="bs-docs-example">
@@ -1668,6 +2497,9 @@
           </div>
 
 
+<h3>Striped</h3>
+          
+
 <div class="bs-docs-example">
             <div class="progress progress-striped">
               <div class="bar" style="width: 20%;"></div>
@@ -1675,12 +2507,18 @@
           </div>
 
 
+<h3>Animated</h3>
+          
+
 <div class="bs-docs-example">
             <div class="progress progress-striped active">
               <div class="bar" style="width: 45%"></div>
             </div>
           </div>
 
+
+<h3>Stacked</h3>
+          
 
 <div class="bs-docs-example">
             <div class="progress">
@@ -1693,6 +2531,9 @@
 
 <h2>Options</h2>
 
+          
+
+<h3>Additional colors</h3>
           
 
 <div class="bs-docs-example">
@@ -1711,6 +2552,9 @@
           </div>
 
 
+<h3>Striped bars</h3>
+          
+
 <div class="bs-docs-example">
             <div class="progress progress-info progress-striped" style="margin-bottom: 9px;">
               <div class="bar" style="width: 20%"></div>
@@ -1726,6 +2570,9 @@
             </div>
           </div>
 
+
+<h1>Media object</h1>
+          
 
 <h2>Default example</h2>
           
@@ -1810,6 +2657,10 @@
 </div>
 
 
+<h1>Miscellaneous <small>Lightweight utility components</small>
+</h1>
+          
+
 <h2>Wells</h2>
           
 
@@ -1819,6 +2670,9 @@
             </div>
           </div>
 
+
+<h3>Optional classes</h3>
+          
 
 <div class="bs-docs-example">
             <div class="well well-large">
@@ -1842,7 +2696,14 @@
           </div>
           
 
-<h2>Modals</h2>
+<h1>Modals <small>bootstrap-modal.js</small>
+</h1>
+          
+
+<h2>Examples</h2>
+          
+
+<h3>Static example</h3>
           
 
 <div class="bs-docs-example" style="background-color: #f5f5f5;">
@@ -1862,12 +2723,25 @@
           </div>
 
 
+<h3 id="myModalLabel">Modal Heading</h3>
+            
+
+<h4>Overflowing text to show optional scrollbar</h4>
+              
+
 <div class="bs-docs-example" style="padding-bottom: 24px;">
             <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
           </div>
 
 
-<h2>Dropdowns</h2>
+<h1>Dropdowns <small>bootstrap-dropdown.js</small>
+</h1>
+          
+
+<h2>Examples</h2>
+          
+
+<h3>Within a navbar</h3>
           
 
 <div class="bs-docs-example">
@@ -1916,6 +2790,9 @@
 
           
 
+<h3>Within tabs</h3>
+          
+
 <div class="bs-docs-example">
             <ul class="nav nav-pills">
 <li class="active"><a href="#">Regular link</a></li>
@@ -1956,7 +2833,11 @@
 
           
 
-<h2>ScrollSpy</h2>
+<h1>ScrollSpy <small>bootstrap-scrollspy.js</small>
+</h1>
+          
+
+<h2>Example in navbar</h2>
           
 
 <div class="bs-docs-example">
@@ -1999,7 +2880,11 @@
 
           
 
-<h2>Togglable tabs</h2>
+<h1>Togglable tabs <small>bootstrap-tab.js</small>
+</h1>
+          
+
+<h2>Example tabs</h2>
           
 
 <div class="bs-docs-example">
@@ -2033,7 +2918,11 @@
 
           
 
-<h2>Tooltips</h2>
+<h1>Tooltips <small>bootstrap-tooltip.js</small>
+</h1>
+          
+
+<h2>Examples</h2>
           
 
 <div class="bs-docs-example tooltip-demo">
@@ -2041,6 +2930,9 @@
             </p>
           </div>
 
+          
+
+<h3>Four directions</h3>
           
 
 <div class="bs-docs-example tooltip-demo">
@@ -2055,7 +2947,14 @@
 
           
 
-<h2>Popovers</h2>
+<h1>Popovers <small>bootstrap-popover.js</small>
+</h1>
+        
+
+<h2>Examples</h2>
+        
+
+<h3>Static popover</h3>
         
 
 <div class="bs-docs-example bs-docs-example-popover">
@@ -2095,10 +2994,16 @@
         </div>
         
 
+<h3>Live demo</h3>
+        
+
 <div class="bs-docs-example" style="padding-bottom: 24px;">
           <a href="#" class="btn btn-large btn-danger" data-toggle="popover" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">Click to toggle popover</a>
         </div>
 
+        
+
+<h4>Four directions</h4>
         
 
 <div class="bs-docs-example tooltip-demo">
@@ -2113,7 +3018,11 @@
 
         
 
-<h2>Alert messages</h2>
+<h1>Alert messages <small>bootstrap-alert.js</small>
+</h1>
+        
+
+<h2>Example alerts</h2>
         
 
 <div class="bs-docs-example">
@@ -2139,7 +3048,14 @@
 
         
 
-<h2>Buttons</h2>
+<h1>Buttons <small>bootstrap-button.js</small>
+</h1>
+            
+
+<h2>Example uses</h2>
+            
+
+<h4>Stateful</h4>
             
 
 <div class="bs-docs-example" style="padding-bottom: 24px;">
@@ -2149,9 +3065,15 @@
             </div>
             
 
+<h4>Single toggle</h4>
+            
+
 <div class="bs-docs-example" style="padding-bottom: 24px;">
               <button type="button" class="btn btn-primary" data-toggle="button">Single Toggle</button>
             </div>
+            
+
+<h4>Checkbox</h4>
             
 
 <div class="bs-docs-example" style="padding-bottom: 24px;">
@@ -2163,6 +3085,9 @@
             </div>
 
 
+<h4>Radio</h4>
+            
+
 <div class="bs-docs-example" style="padding-bottom: 24px;">
               <div class="btn-group" data-toggle="buttons-radio">
                 <button type="button" class="btn btn-primary">Left</button>
@@ -2172,7 +3097,11 @@
             </div>
 
 
-<h2>Collapse</h2>
+<h1>Collapse <small>bootstrap-collapse.js</small>
+</h1>
+            
+
+<h2>Example accordion</h2>
             
 
 <div class="bs-docs-example">
@@ -2217,7 +3146,11 @@
             </div>
 
 
-<h2>Carousel</h2>
+<h1>Carousel <small>bootstrap-carousel.js</small>
+</h1>
+            
+
+<h2>Example carousel</h2>
             
 
 <div class="bs-docs-example">
@@ -2253,7 +3186,11 @@
             </div>
 
 
-<h2>Typeahead</h2>
+<h1>Typeahead <small>bootstrap-typeahead.js</small>
+</h1>
+            
+
+<h2>Example</h2>
             
 
 <div class="bs-docs-example" style="background-color: #f5f5f5;">

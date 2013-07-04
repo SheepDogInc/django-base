@@ -8,7 +8,23 @@ import lxml.etree
 import lxml.html
 
 
-EXTRACTED_SELECTORS = 'h1, h2, .bs-docs-example'
+EXTRACTED_SELECTORS = ('h1, h2, h3, h4, h5, h6, '
+                       '.bs-docs-example, #buttons table')
+
+HEADER_NESTING = ('h1', 'h2', 'h3', 'h4', 'h5', 'h6')
+
+
+def is_header(tag):
+    """Returns True if a tag is a header tag, False otherwise"""
+    return tag in HEADER_NESTING
+
+
+def get_tag_nesting(tag):
+    """Returns the nesting level of a tag, where smaller levels are outside"""
+    try:
+        return HEADER_NESTING.index(tag)
+    except ValueError:
+        return len(HEADER_NESTING)
 
 
 def filter_nonexample_headers(elements):
@@ -21,26 +37,22 @@ def filter_nonexample_headers(elements):
     """
 
     filtered_elements = []
-    last_h1 = None
+    last_tag = None
 
-    for i, element in enumerate(elements):
+    for element in elements[::-1]:
         tag = element.tag
-        next_tag = elements[i + 1].tag if i + 1 < len(elements) else None
+        is_example = not is_header(tag)
 
-        if tag == 'h1':
-            last_h1 = element
+        if last_tag is None:
+            is_parent = False
         else:
-            is_example = tag == 'div'
-            is_example_header = tag == 'h2' and next_tag == 'div'
-            is_vague_header = tag == 'h2' and element.text.startswith('Example')
+            is_parent = get_tag_nesting(tag) < get_tag_nesting(last_tag)
 
-            if is_vague_header:
-                element.text = last_h1.text.strip()
+        if is_example or is_parent:
+            filtered_elements.append(element)
+            last_tag = tag
 
-            if is_example or is_example_header:
-                filtered_elements.append(element)
-
-    return filtered_elements
+    return filtered_elements[::-1]
 
 
 def rewrite_asset_urls(html):
