@@ -1,4 +1,5 @@
 import os
+import os.path
 
 from django.conf import settings
 
@@ -22,13 +23,13 @@ def find_templates_in_prefix(*directory_parts):
         module = __import__(app)
         module_init_file = os.path.abspath(module.__file__)
         package_directory = os.path.dirname(module_init_file)
-        template_directory = os.path.join(
-            package_directory, 'templates', directory_name)
+        template_directory = os.path.join(package_directory, 'templates')
         template_dirs.append(template_directory)
 
     for template_directory in template_dirs:
-        if os.path.exists(template_directory):
-            for filename in os.listdir(template_directory):
+        prefixed_directory = os.path.join(template_directory, directory_name)
+        if os.path.exists(prefixed_directory):
+            for filename in os.listdir(prefixed_directory):
                 templates.append(os.path.join(directory_name, filename))
 
     return templates
