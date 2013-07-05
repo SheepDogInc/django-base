@@ -55,6 +55,30 @@ def filter_nonexample_headers(elements):
     return filtered_elements[::-1]
 
 
+def filter_duplicated_descendants(elements):
+    """Converts a flat list of header and example elements into a list
+    with nested duplicates removed.
+
+    Nested duplicates of elements can occur when a selector matches both an
+    example, and some elements contained in the example. In this case, the
+    duplicated elements appear after the example unless they are filtered out.
+
+    """
+
+    filtered_elements = []
+    last_element = None
+
+    for element in elements:
+        if last_element is not None:
+            ancestors = element.iterancestors(tag=last_element.tag)
+            if last_element not in ancestors:
+                filtered_elements.append(element)
+
+        last_element = element
+
+    return filtered_elements
+
+
 def rewrite_asset_urls(html):
     """Rewrites asset URLs in the bootstrap documentation to use appropriate
     static file lookup, instead of hardcoding the relative URLs.
@@ -74,29 +98,51 @@ def generate_examples_from_file(file_path):
 
     expression = HTMLTranslator().css_to_xpath(EXTRACTED_SELECTORS)
     document = lxml.html.parse(file_path)
-    elements = document.xpath(expression)
 
-    for el in filter_nonexample_headers(elements):
+    elements = document.xpath(expression)
+    elements = filter_nonexample_headers(elements)
+    elements = filter_duplicated_descendants(elements)
+
+    for el in elements:
         html = lxml.etree.tostring(el, pretty_print=True, method='html')
         yield rewrite_asset_urls(html)
 
 
 def extract_examples_from_directory(directory_path):
-    """Extracts a single string containing all of the header and example
-    elements for all HTML files (determined by possession of a '.html' suffix)
-    found in the directory specified by `directory_path`.
+    """Extracts a single string containing a django template with all of the
+    header and example elements for all HTML files (determined by possession
+    of a '.html' suffix) found in the directory specified by `directory_path`.
 
     This function does not recurse into subdirectories.
 
     """
 
-    chunks = ['{% load static %}']
+    chunks = [
+        '{% extends "visual_style/snippet_details.html" %}',
+        '{% load static %}',
+        '{% block scripts %}',
+        '{{ block.super }}',
+        '<script src="{% static "bower/bootstrap/docs/assets/js/application.js" %}"></script>',
+        '{% endblock %}',
+        '{% block styles %}',
+        '<link href="{% static "bower/bootstrap/docs/assets/css/docs.css" %}" type="text/css" rel="stylesheet">',
+        '{{ block.super }}',
+        '{% endblock %}',
+
+        # The example chunks are all written to the content block
+        '{% block content %}',
+        '{{ block.super }}',
+    ]
+
     for filename in os.listdir(directory_path):
         # Please don't suffix directory names with .html :-)
         if filename.endswith('.html'):
             file_path = os.path.join(directory_path, filename)
-            chunk = generate_examples_from_file(file_path)
-            chunks.extend(chunk)
+            example_chunks = generate_examples_from_file(file_path)
+            chunks.extend(example_chunks)
+
+    chunks.append('{% endblock %}')  # Close the content block
+
     return '\n'.join(chunks)
 
 

@@ -10,20 +10,22 @@ own widgets to be displayed.
 Installation
 ------------
 
-0. Add `visual_style` to `INSTALLED_APPS`
-0. In your application or site-wide templates directory, add a template
+1. Add `visual_style` to `INSTALLED_APPS`
+2. In your application or site-wide templates directory, add a template
    named `visual_style/base.html`. This template must contain the stylesheets
    and javascript that are common to all pages on the site, and sufficient to
    display the registered components. In most cases, you can get away with just
    extending your site base template and making defining a "content" block
    inside of the body.
-0. Include `visual_style.urls` in your urlconf.
+3. Include `visual_style.urls` in your urlconf.
 
 
 Registering Components
 ----------------------
 
 If you have any components that are in use site-wide, you can create a template
-called `visual_style/snippets/<component>.html` in the app defining
-the component. The content of the template will automatically be included in the
-visual style test page.
+named `visual_style/snippets/<component>.html` in the app defining
+the component. This template should inherit from
+`visual_style/snippet_details.html', and override the `content`, `scripts`, and
+`styles` blocks as necessary. The template will automatically be added to the
+nav bar in the visual style test page.

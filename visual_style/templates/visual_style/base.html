@@ -13,7 +13,7 @@
             type="text/css" rel="stylesheet">
       <link href="{% static "bower/bootstrap/docs/assets/css/bootstrap-responsive.css" %}"
             type="text/css" rel="stylesheet">
-      {% block style %}
+      {% block styles %}
       {% endblock %}
     {% endcompress %}
   </head>
@@ -37,6 +37,8 @@
       <script src="{% static "bower/bootstrap/js/bootstrap-carousel.js" %}"></script>
       <script src="{% static "bower/bootstrap/js/bootstrap-typeahead.js" %}"></script>
       <script src="{% static "bower/bootstrap/js/bootstrap-affix.js" %}"></script>
+      {% block scripts %}
+      {% endblock %}
     {% endcompress %}
   </body>
 </html>
