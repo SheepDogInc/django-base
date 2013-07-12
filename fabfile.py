@@ -150,14 +150,14 @@ def reset_local_db():
 
 def try_migrations():
     reset_local_db()
-    local('python manage.py syncdb')
-    local('python manage.py migrate')
+    local('./manage.py syncdb')
+    local('./manage.py migrate')
 
 
 def try_clean():
     reset_local_db()
-    local('python manage.py syncdb --noinput')
-    local('python manage.py migrate')
+    local('./manage.py syncdb --noinput')
+    local('./manage.py migrate')
 
 
 def reset_heroku_db():
@@ -177,16 +177,16 @@ def load_db():
         return
 
     commands = [
-        'python manage.py syncdb --noinput',
-        'python manage.py migrate',
-        'python manage.py droptables -y',
-        'python manage.py loaddata dump.json',
+        './manage.py syncdb --noinput',
+        './manage.py migrate',
+        './manage.py droptables -y',
+        './manage.py loaddata dump.json',
         ]
     local('heroku run "%s"' % '; '.join(commands))
 
 
 def make_dump():
-    local('python manage.py dumpdata | python -mjson.tool > dump.json')
+    local('./manage.py dumpdata | python -mjson.tool > dump.json')
 
 
 ##### Heroku specific helpers #####
