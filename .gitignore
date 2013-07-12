@@ -1,7 +1,7 @@
 dev.db
 *.pyc
 static_collected/
-components/
+bower/
 node_modules/
 _secret.py
 
