@@ -40,11 +40,11 @@ INSTALLED_APPS = (
 
     'django_versioned',
     'raven.contrib.django.raven_compat',
-
     'debug_toolbar',
     'compressor',
     'crispy_forms',
     'south',
+    'django_base'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,6 +91,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
