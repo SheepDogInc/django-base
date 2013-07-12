@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'compressor',
     'crispy_forms',
     'south',
-    'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
