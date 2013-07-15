@@ -12,8 +12,8 @@ COVERAGE_SOURCES = ','.join(APPS)
 COVERAGE_PARAMS = "--omit='*migrations*,*tests*"
 ENVS = {
     'dev': {
-        'repo_url': 'git@heroku.com:django_base.git',
-        'site_url': 'http://django_base.herokuapp.com'
+        'repo_url': 'git@heroku.com:sd-django-base.git',
+        'site_url': 'http://sd-django-base.herokuapp.com'
     },
 }
 
@@ -207,9 +207,11 @@ def remote(cmd='', dest=''):
     """
     if not cmd:
         cmd = prompt('Command to run:')
-    local("heroku run python manage.py %s \
-            --settings=databoliks.settings.heroku.%s \
-            --app databoliks-%s" % (cmd, dest, dest))
+    local("heroku run python manage.py %(cmd)s \
+            --settings=%(project_name)s.settings.heroku.%(dest)s \
+            --app %(project_name)s-%(dest)s" % {'project_name': PROJECT_NAME,
+                                                'cmd': cmd,
+                                                'dest': dest})
 
 
 ##### Testing, coverage & site validation #####
