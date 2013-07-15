@@ -207,11 +207,8 @@ def remote(cmd='', dest=''):
     """
     if not cmd:
         cmd = prompt('Command to run:')
-    local("heroku run python manage.py %(cmd)s \
-            --settings=%(project_name)s.settings.heroku.%(dest)s \
-            --app %(project_name)s-%(dest)s" % {'project_name': PROJECT_NAME,
-                                                'cmd': cmd,
-                                                'dest': dest})
+    local("heroku run python manage.py %s \
+            --settings=%s.settings.heroku.%s" % (cmd, PROJECT_NAME, dest))
 
 
 ##### Testing, coverage & site validation #####
