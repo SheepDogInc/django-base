@@ -5,15 +5,15 @@ import datetime
 from fabric.colors import red, green
 from fabric.operations import local, prompt
 
-PROJECT_NAME = 'django_base'
+PROJECT_NAME = '{{ project_name }}'
 APPS = []
 TESTS = [' '.join(APPS)]
 COVERAGE_SOURCES = ','.join(APPS)
 COVERAGE_PARAMS = "--omit='*migrations*,*tests*"
 ENVS = {
     'dev': {
-        'repo_url': 'git@heroku.com:sd-django-base.git',
-        'site_url': 'http://sd-django-base.herokuapp.com'
+        'repo_url': 'git@heroku.com:{{ project_name }}.git',
+        'site_url': 'http://{{ project_name }}.herokuapp.com'
     },
 }
 

@@ -1,4 +1,4 @@
-# Sheepdog Django Skeleton
+# {{ project_name }}
 
 ## Getting Bootstrapped
 
@@ -10,7 +10,7 @@ Run `./setup`.
 
 Clone & create virtual env:
 
-    git clone git@github.com:SheepDogInc/django-base.git myproject
+    git clone git@github.com:SheepDogInc/{{ project_name }}.git myproject
     cd myproject/
     mkvirtualenv myproject
 
