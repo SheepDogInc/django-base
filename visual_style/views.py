@@ -10,16 +10,22 @@ from .template_finder import find_templates_in_prefix
 
 
 class VisualStyleView(View, ContextMixin):
-    """
-    """
+    """A VisualStyleView displays a component template based on the
+    template name, which is captured from the URL. If no template name
+    is specified, the user will be redirected to a valid template.
 
-    # We can't use a TemplateView because the template rendered
-    #  varies based on keyword arguments captured from the URL
+    """
 
     template_prefix = ('visual_style', 'snippets')
 
     def get_snippets(self, active_template_filename):
-        """
+        """Returns a list of dicts, where each dict contains the URL to
+        view the visual style test page for a given snippet, as well as
+        the snippet name, and whether or not the snippet corresponds to
+        the page currently being viewed.
+
+        The snippets are returned in lexicographic sort order by name.
+
         """
 
         templates = find_templates_in_prefix(*self.template_prefix)
