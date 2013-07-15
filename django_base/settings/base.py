@@ -203,3 +203,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 CRISPY_FAIL_SILENTLY = not DEBUG
+
+##### Visual Style #####
+
+BOOTSTRAP_DOC_DIRECTORY = "bower/bootstrap/docs"
