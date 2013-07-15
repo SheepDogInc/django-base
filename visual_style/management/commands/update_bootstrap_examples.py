@@ -2,6 +2,8 @@ import os
 import os.path
 import re
 
+from django.conf import settings
+
 from cssselect import HTMLTranslator
 from django.core.management.base import BaseCommand, CommandError
 import lxml.etree
@@ -12,6 +14,10 @@ EXTRACTED_SELECTORS = ('h1, h2, h3, h4, h5, h6, '
                        '.bs-docs-example, #buttons table')
 
 HEADER_NESTING = ('h1', 'h2', 'h3', 'h4', 'h5', 'h6')
+
+
+def get_bootstrap_doc_directory():
+    return settings.BOOTSTRAP_DOC_DIRECTORY.rstrip('/')
 
 
 def is_header(tag):
@@ -86,7 +92,7 @@ def rewrite_asset_urls(html):
     """
 
     asset_url_regex = re.compile(r'"(assets/[^"]*)"')
-    replacement = r'"{% static "bower/bootstrap/docs/\1" %}"'
+    replacement = r'"{%% static "%s/\1" %%}"' % get_bootstrap_doc_directory()
     return re.sub(asset_url_regex, replacement, html)
 
 
@@ -122,10 +128,10 @@ def extract_examples_from_directory(directory_path):
         '{% load static %}',
         '{% block scripts %}',
         '{{ block.super }}',
-        '<script src="{% static "bower/bootstrap/docs/assets/js/application.js" %}"></script>',
+        '<script src="{%% static "%s/assets/js/application.js" %%}"></script>' % get_bootstrap_doc_directory(),
         '{% endblock %}',
         '{% block styles %}',
-        '<link href="{% static "bower/bootstrap/docs/assets/css/docs.css" %}" type="text/css" rel="stylesheet">',
+        '<link href="{%% static "%s/assets/css/docs.css" %%}" type="text/css" rel="stylesheet">' % get_bootstrap_doc_directory(),
         '{{ block.super }}',
         '{% endblock %}',
 
@@ -149,7 +155,7 @@ def extract_examples_from_directory(directory_path):
 def get_bootstrap_doc_directory_path():
     """Returns the path to the bootstrap documentation directory"""
 
-    doc_dir_name = os.path.join('static', 'bower', 'bootstrap', 'docs')
+    doc_dir_name = os.path.join('static', get_bootstrap_doc_directory())
 
     for dir_path, dir_names, filenames in os.walk("."):
         for dir_name in dir_names:
