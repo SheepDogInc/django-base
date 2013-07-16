@@ -14,7 +14,7 @@ function echo_exit {
 if [ "`echo $0 | cut -c1`" = "/" ]; then
   cd `dirname $0`
 else
-  cd `pwd`/`echo $0 | sed -e s/setup//`
+  cd `pwd`/`echo $0 | sed -e s/setup.sh//`
 fi
 
 # Check for required executables
@@ -32,10 +32,10 @@ do
 done
 
 # Create virtualenv if necessary
+source `which virtualenvwrapper.sh`
 if [ -d "$WORKON_HOME/$PROJECT" ]; then
     workon $PROJECT
 else
-    source `which virtualenvwrapper.sh`
     mkvirtualenv --python=python2.7 --no-site-packages $PROJECT
 fi
 
@@ -44,7 +44,7 @@ pip install -r requirements.txt
 npm install
 
 # Add node_modules to path if necessary
-if [ ! grep -Fq "/node_modules/.bin" $VIRTUAL_ENV/bin/postactivate ]; then
+if ! grep -Fq "/node_modules/.bin" $VIRTUAL_ENV/bin/postactivate; then
     printf 'export PATH=%s/node_modules/.bin:$PATH\n' `pwd` >> $VIRTUAL_ENV/bin/postactivate
     workon $PROJECT
 fi

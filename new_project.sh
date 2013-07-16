@@ -26,7 +26,9 @@ pip install https://www.djangoproject.com/download/1.6b1/tarball/
 
 # Create project based on django-base template
 django-admin.py startproject --template=https://github.com/SheepDogInc/django-base/archive/project-template.zip --extension=py,json,md,sh,bowerrc --name=Procfile $PROJECT
+cd $PROJECT
 rm new_project.sh
+chmod +x setup.sh
 
 echo "============================"
 echo "TO PROCEED:"
