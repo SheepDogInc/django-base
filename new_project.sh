@@ -32,4 +32,5 @@ chmod +x setup.sh
 
 echo "============================"
 echo "TO PROCEED:"
-echo "(1) ./setup.sh"
+echo "(1) cd $PROJECT"
+echo "(2) ./setup.sh"
