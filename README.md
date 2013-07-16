@@ -1,10 +1,20 @@
+## Using this template
+
+To create a new project with this template, run the following command:
+
+    bash <(curl -s https://raw.github.com/SheepDogInc/django-base/project-template/new_project.sh)
+
+Then remove this section of the README.
+
+----------------------------------------------------------------------
+
 # {{ project_name }}
 
 ## Getting Bootstrapped
 
 ### Automatically
 
-Run `./setup`.
+Run `./setup.sh`.
 
 ### Manually
 
