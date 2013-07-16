@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# This script can be used to onboard new
+# This script can be used to onboard new developers to the project or ensure
+# project dependencies are up to date.
 
 PROJECT={{ project_name }}
 
