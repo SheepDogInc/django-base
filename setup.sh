@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script can be used to onboard new
+
 PROJECT={{ project_name }}
 
 function echo_exit {
@@ -14,7 +16,7 @@ else
   cd `pwd`/`echo $0 | sed -e s/setup//`
 fi
 
-## Check for required executables
+# Check for required executables
 for ex in python2.7 virtualenv virtualenvwrapper.sh
 do
     command -v $ex >/dev/null 2>&1 || { echo >&2 echo_exit "Executable '$ex' is required but not installed.  Aborting."; }
@@ -23,31 +25,29 @@ done
 # Check for normal files we expect
 for f in manage.py requirements.txt $PROJECT/settings/base.py
 do
-  if [ ! -e $f ]
-  then echo_exit "File $f not found"
-  fi
+    if [ ! -e $f ]; then
+        echo_exit "File $f not found"
+    fi
 done
 
-# Check if we already ran the setup script:
-for f in $PROJECT/static/bower $WORKON_HOME/$PROJECT
-do
-  if [ -e $f ]
-  then
-    echo "File $f already exists; perhaps you already ran the setup?"
-    echo "To try again, run the following first: "
-    echo "   rm -rf $PROJECT ; rmvirtualenv $PROJECT ; git reset HEAD ; git checkout . "
-    exit 1;
-  fi
-done
+# Create virtualenv if necessary
+if [ -d "$WORKON_HOME/$PROJECT" ]; then
+    workon $PROJECT
+else
+    source `which virtualenvwrapper.sh`
+    mkvirtualenv --python=python2.7 --no-site-packages $PROJECT
+fi
 
 # Install all dependencies
-source `which virtualenvwrapper.sh`
-mkdir -p $PROJECT/static/js
-mkvirtualenv --python=python2.7 --no-site-packages $PROJECT
 pip install -r requirements.txt
 npm install
-printf 'export PATH=%s/node_modules/.bin:$PATH\n' `pwd` >> $VIRTUAL_ENV/bin/postactivate
-workon $PROJECT
+
+# Add node_modules to path if necessary
+if [ ! grep -Fq "/node_modules/.bin" $VIRTUAL_ENV/bin/postactivate ]; then
+    printf 'export PATH=%s/node_modules/.bin:$PATH\n' `pwd` >> $VIRTUAL_ENV/bin/postactivate
+    workon $PROJECT
+fi
+
 bower install
 
 echo "============================"
