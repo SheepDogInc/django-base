@@ -5,15 +5,15 @@ import datetime
 from fabric.colors import red, green
 from fabric.operations import local, prompt
 
-PROJECT_NAME = 'django_base'
+PROJECT_NAME = '{{ project_name }}'
 APPS = []
 TESTS = [' '.join(APPS)]
 COVERAGE_SOURCES = ','.join(APPS)
 COVERAGE_PARAMS = "--omit='*migrations*,*tests*"
 ENVS = {
     'dev': {
-        'repo_url': 'git@heroku.com:sd-django-base.git',
-        'site_url': 'http://sd-django-base.herokuapp.com'
+        'repo_url': 'git@heroku.com:{{ project_name }}.git',
+        'site_url': 'http://{{ project_name }}.herokuapp.com'
     },
 }
 
@@ -281,6 +281,14 @@ def stats():
     Show number of additions and deletions between 1.0 and now
     """
     local('git diff 1.0..HEAD --shortstat')
+
+
+def freeze():
+    """
+    Generate a stable requirements.txt based on requirements.spec.txt.
+    """
+    local('pip freeze -r requirements.spec.txt > requirements.txt')
+
 
 try:
     assert os.getcwd() == os.path.dirname(os.path.abspath(__file__))

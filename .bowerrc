@@ -1,3 +1,3 @@
 {
-  "directory": "django_base/static/bower"
+  "directory": "{{ project_name }}/static/bower"
 }

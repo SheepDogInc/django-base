@@ -1,5 +1,5 @@
 """
-Django settings for django_base project.
+Django settings for {{ project_name }} project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
@@ -12,13 +12,11 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-PROJECT_NAME = 'django_base'
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0+*%pd=tt-uiy@)o(naph&o1u5mbcht#-fmtr!!kdake2*jj(('
+SECRET_KEY = '{{ secret_key }}'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,7 +42,7 @@ INSTALLED_APPS = (
     'compressor',
     'crispy_forms',
     'south',
-    'django_base'
+    '{{ project_name }}'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,9 +56,9 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-ROOT_URLCONF = 'django_base.urls'
+ROOT_URLCONF = '{{ project_name }}.urls'
 
-WSGI_APPLICATION = 'django_base.wsgi.application'
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 
 # Database
@@ -69,7 +67,7 @@ WSGI_APPLICATION = 'django_base.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': PROJECT_NAME,
+        'NAME': '{{ project_name }}',
     }
 }
 
