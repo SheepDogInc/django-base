@@ -22,7 +22,7 @@ done
 # Create virtualenv with just Django
 source `which virtualenvwrapper.sh`
 mkvirtualenv --python=python2.7 --no-site-packages $PROJECT
-pip install https://www.djangoproject.com/download/1.6b1/tarball/
+pip install Django==1.6b1 --find-links https://s3.amazonaws.com/sheepdog-assets/feta/index.html
 
 # Create project based on django-base template
 django-admin.py startproject --template=https://github.com/SheepDogInc/django-base/archive/project-template.zip --extension=py,json,md,sh,bowerrc --name=Procfile $PROJECT
