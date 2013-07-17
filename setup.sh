@@ -10,6 +10,11 @@ function echo_exit {
     exit 1
 }
 
+if [ -z "$VIRTUALENV" ]; then
+    echo "Deactivate your virtualenv by typing 'deactivate' and run this script again."
+    exit 1
+fi
+
 # Make sure we are in the root directory where the setup executable lives
 if [ "`echo $0 | cut -c1`" = "/" ]; then
   cd `dirname $0`

@@ -3,6 +3,11 @@
 # Only use this script if you are bootstrapping a new project. Once a project
 # is bootstrapped, use setup.sh.
 
+if [ -z "$VIRTUALENV" ]; then
+    echo "Deactivate your virtualenv by typing 'deactivate' and run this script again."
+    exit 1
+fi
+
 read -p "Project name for env and main project dir (django_base)? " PROJECT
 if [ -z "$PROJECT" ]; then
     PROJECT=django_base
