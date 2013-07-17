@@ -282,6 +282,14 @@ def stats():
     """
     local('git diff 1.0..HEAD --shortstat')
 
+
+def freeze():
+    """
+    Generate a stable requirements.txt based on requirements.spec.txt.
+    """
+    local('pip freeze -r requirements.spec.txt > requirements.txt')
+
+
 try:
     assert os.getcwd() == os.path.dirname(os.path.abspath(__file__))
 except AssertionError:
