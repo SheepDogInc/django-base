@@ -3,25 +3,25 @@
 # Only use this script if you are bootstrapping a new project. Once a project
 # is bootstrapped, use setup.sh.
 
-if [ -z "$VIRTUALENV" ]; then
-    echo "Deactivate your virtualenv by typing 'deactivate' and run this script again."
-    exit 1
-fi
-
-read -p "Project name for env and main project dir (django_base)? " PROJECT
-if [ -z "$PROJECT" ]; then
-    PROJECT=django_base
-fi
 
 function echo_exit {
     echo ABORTING: $*
     exit 1
 }
 
+if [ -n "$VIRTUALENV" ]; then
+    echo_exit "Deactivate your virtualenv by typing 'deactivate' and run this script again."
+fi
+
+read -p "Project name for env and main project dir (django_base)? " PROJECT
+if [ -n "$PROJECT" ]; then
+    PROJECT=django_base
+fi
+
 # Check for required executables
 for ex in python2.7 virtualenv virtualenvwrapper.sh
 do
-    command -v $ex >/dev/null 2>&1 || { echo >&2 echo_exit "Executable '$ex' is required but not installed. Aborting."; }
+    command -v $ex >/dev/null 2>&1 || { echo >&2 echo_exit "Executable '$ex' is required but not installed."; }
 done
 
 # Create virtualenv with just Django
