@@ -2,7 +2,7 @@
 
 To create a new project with this template, run the following command:
 
-    bash <(curl -fsSL https://raw.github.com/SheepDogInc/django-base/project-template/new_project.sh)
+    bash <(curl -fsSL https://raw.github.com/SheepDogInc/django-base/master/new_project.sh)
 
 This section can be removed once you are done.
 
