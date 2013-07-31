@@ -37,7 +37,7 @@ pip install Django==1.6b1 --find-links https://s3.amazonaws.com/sheepdog-assets/
 django-admin.py startproject --template=https://github.com/SheepDogInc/django-base/archive/master.zip --extension=py,json,md,sh,bowerrc --name=Procfile $PROJECT
 cd $PROJECT
 rm new_project.sh
-chmod +x setup.sh
+chmod +x setup.sh manage.py
 
 echo "============================"
 echo "TO PROCEED:"

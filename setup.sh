@@ -58,5 +58,6 @@ bower install
 echo "============================"
 echo "TO PROCEED:"
 echo "(1) => Create database $PROJECT"
-echo "(2) ./manage.py syncdb"
-echo "(3) ./manage.py migrate"
+echo "(2) workon $PROJECT"
+echo "(3) ./manage.py syncdb"
+echo "(4) ./manage.py migrate"
