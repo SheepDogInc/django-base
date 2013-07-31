@@ -34,7 +34,7 @@ mkvirtualenv --python=python2.7 --no-site-packages $PROJECT
 pip install Django==1.6b1 --find-links https://s3.amazonaws.com/sheepdog-assets/feta/index.html
 
 # Create project based on django-base template
-django-admin.py startproject --template=https://github.com/SheepDogInc/django-base/archive/project-template.zip --extension=py,json,md,sh,bowerrc --name=Procfile $PROJECT
+django-admin.py startproject --template=https://github.com/SheepDogInc/django-base/archive/master.zip --extension=py,json,md,sh,bowerrc --name=Procfile $PROJECT
 cd $PROJECT
 rm new_project.sh
 chmod +x setup.sh
