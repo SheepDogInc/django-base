@@ -53,7 +53,7 @@ if ! grep -Fq "/node_modules/.bin" $VIRTUAL_ENV/bin/postactivate; then
     workon $PROJECT
 fi
 
-bower install
+./manage.py bower_install
 
 echo "============================"
 echo "TO PROCEED:"
