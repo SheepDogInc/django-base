@@ -7,7 +7,7 @@ from fabric.operations import local, prompt
 
 PROJECT_NAME = '{{ project_name }}'
 APPS = []
-TESTS = [' '.join(APPS)]
+TESTS = ' '.join(APPS)
 COVERAGE_SOURCES = ','.join(APPS)
 COVERAGE_PARAMS = "--omit='*migrations*,*tests*"
 ENVS = {
