@@ -42,3 +42,18 @@ Finish up:
 
     ./manage.py syncdb
     ./manage.py migrate
+
+### Heroku-specific stuff
+
+For heroku deployments, use a buildback which knows about combining node and
+python.  Otherwise, Heroku will auto-detect one w/o the other and
+requirements will not be installed.
+
+    heroku config:set BUILDPACK_URL='https://github.com/thurloat/heroku-buildpack-python.git'
+    heroku addons:add heroku-postgresql:dev
+
+While we are on the topic of heroku keys, you might as well set other
+environment variables as needed:
+
+    AWS_ACCESS_KEY_ID          # use a project-specific one!!
+    AWS_SECRET_ACCESS_KEY
