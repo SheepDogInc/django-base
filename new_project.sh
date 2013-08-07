@@ -3,19 +3,32 @@
 # Only use this script if you are bootstrapping a new project. Once a project
 # is bootstrapped, use setup.sh.
 
+TEMPLATE=https://github.com/SheepDogInc/django-base/archive/master.zip
 
 function echo_exit {
     echo ABORTING: $*
     exit 1
 }
 
-if [ -n "$VIRTUALENV" ]; then
+if [ -n "$VIRTUAL_ENV" ]; then
     echo_exit "Deactivate your virtualenv by typing 'deactivate' and run this script again."
 fi
 
-read -p "Project name for env and main project dir (django_base)? " PROJECT
-if [ -z "$PROJECT" ]; then
-    PROJECT=django_base
+if [[ $# == 0 ]]; then
+    read -p "Project name for env and main project dir (django_base)? " PROJECT
+elif [[ $# == 1 ]]; then
+    PROJECT=$1
+elif [[ $# == 2 ]]; then
+    PROJECT=$1
+    TEMPLATE=$2
+else
+    echo "Usage:"
+    echo
+    echo "  new_project.sh"
+    echo "  new_project.sh PROJECT_NAME"
+    echo "  new_project.sh PROJECT_NAME DJANGO_PROJECT_TEMPLATE"
+    echo
+    exit 1
 fi
 
 if [[ ! "$PROJECT" =~ ^[a-zA-Z_0-9]+$ ]] ; then
@@ -34,7 +47,7 @@ mkvirtualenv --python=python2.7 --no-site-packages $PROJECT
 pip install Django==1.6b1 --find-links https://s3.amazonaws.com/sheepdog-assets/feta/index.html
 
 # Create project based on django-base template
-django-admin.py startproject --template=https://github.com/SheepDogInc/django-base/archive/master.zip --extension=py,json,md,sh,bowerrc --name=Procfile $PROJECT
+django-admin.py startproject --template=$TEMPLATE --extension=py,json,md,sh,bowerrc --name=Procfile $PROJECT
 cd $PROJECT
 rm new_project.sh
 chmod +x setup.sh manage.py

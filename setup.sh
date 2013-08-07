@@ -10,8 +10,33 @@ function echo_exit {
     exit 1
 }
 
-if [ -n "$VIRTUALENV" ]; then
+if [ -n "$VIRTUAL_ENV" ]; then
     echo_exit "Deactivate your virtualenv by typing 'deactivate' and run this script again."
+fi
+
+if [[ $# == 0 ]]; then
+    echo -n # Do nothing
+elif [[ $# == 1 && -d $1 && -e $1/new_project.sh ]]; then
+    # Re-run new_project.sh on specified django_base;
+    # Overwrite local files and exit
+    DIR=`pwd`
+    cd /tmp
+    rm -rf $PROJECT
+    $1/new_project.sh $PROJECT $1
+    cd /tmp/$PROJECT
+    tar cf - . | (cd $DIR; tar xf -)
+    echo "========================"
+    echo "i.e., Re-run ./setup.sh"
+    echo "========================"
+    exit 0
+else
+    echo "Usage:"
+    echo
+    echo "  ./setup.sh"
+    echo "  ./setup.sh [PATH_TO_DJANGO_BASE]"
+    echo
+    echo "The latter usage overwrites local files w/ (new) django base"
+    exit 1
 fi
 
 # Make sure we are in the root directory where the setup executable lives
