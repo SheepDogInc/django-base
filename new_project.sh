@@ -31,10 +31,6 @@ else
     exit 1
 fi
 
-if [[ -z "$TEMPLATE" ]]; then
-    TEMPLATE=$2
-fi
-
 if [[ ! "$PROJECT" =~ ^[a-zA-Z_0-9]+$ ]] ; then
     echo_exit "Project name must consist of underscore, letters, and digits"
 fi
