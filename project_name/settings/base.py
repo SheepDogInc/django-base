@@ -36,13 +36,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'bower',
     'django_versioned',
     'raven.contrib.django.raven_compat',
     'debug_toolbar',
     'compressor',
     'crispy_forms',
     'south',
-    '{{ project_name }}'
+
+    '{{ project_name }}',
 )
 
 MIDDLEWARE_CLASSES = (

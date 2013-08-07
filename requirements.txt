@@ -16,6 +16,7 @@ django-versioned==0.3
 # Supporting dependencies
 Fabric==1.6.1
 boto==2.9.7
+jack-bower==0.1.5-sd
 coverage==3.6
 gunicorn==17.5
 psycopg2==2.5.1
