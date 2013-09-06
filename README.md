@@ -57,3 +57,4 @@ environment variables as needed:
 
     AWS_ACCESS_KEY_ID          # use a project-specific one!!
     AWS_SECRET_ACCESS_KEY
+    ENV                        # the environment you're deploying ie: dev/prod
