@@ -1,8 +1,8 @@
 # Install packages from feta
 --find-links https://s3.amazonaws.com/sheepdog-assets/feta/index.html
 
-# Install Django 1.6b1 until 1.6 stable is released
-Django==1.6b1
+# Django version appears in 3 files: requirements.txt, requirements.spec.txt, new_project.sh
+Django==1.6b2
 
 # Django-specific dependencies
 South==0.8.1
