@@ -6,14 +6,15 @@ from fabric.colors import red, green
 from fabric.operations import local, prompt
 
 PROJECT_NAME = '{{ project_name }}'
-APPS = []
+APPS = ['stella_mail']
 TESTS = ' '.join(APPS)
 COVERAGE_SOURCES = ','.join(APPS)
 COVERAGE_PARAMS = "--omit='*migrations*,*tests*"
 ENVS = {
     'dev': {
         'repo_url': 'git@heroku.com:{{ project_name }}.git',
-        'site_url': 'http://{{ project_name }}.herokuapp.com'
+        'site_url': 'http://{{ project_name }}-dev.herokuapp.com',
+        'app_name': '{{ project_name }}-dev',
     },
 }
 
@@ -132,7 +133,8 @@ def deploy_static(dest=''):
     Compress and upload static files to S3.
     """
     local('./manage.py collectstatic --noinput'
-          ' --settings=%s.settings.heroku.%s' % (PROJECT_NAME, dest))
+          ' --settings=%s.settings.heroku.%s'
+          % (PROJECT_NAME, dest))
     local('./manage.py compress'
           ' --force --settings=%s.settings.heroku.%s' % (PROJECT_NAME, dest))
 
@@ -207,8 +209,10 @@ def remote(cmd='', dest=''):
     """
     if not cmd:
         cmd = prompt('Command to run:')
-    local("heroku run python manage.py %s \
-            --settings=%s.settings.heroku.%s" % (cmd, PROJECT_NAME, dest))
+    local("heroku run python manage.py %s"
+          " --settings=%s.settings.heroku.%s"
+          " --app=%s"
+          % (cmd, PROJECT_NAME, dest, ENVS[dest]['app_name']))
 
 
 ##### Testing, coverage & site validation #####
@@ -243,7 +247,7 @@ def check(dest=''):
     print 'Checking site status...'
     response = local('curl --silent -I "%s"' % ENVS[dest]['site_url'],
                      capture=True)
-    if not '200 OK' in response:
+    if not ('200 OK' in response or '302 FOUND' in response):
         print(red('\nSomething seems to have gone wrong!\n'))
     else:
         print(green('\nLooks good from here!\n'))
