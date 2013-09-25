@@ -43,17 +43,32 @@ Finish up:
     ./manage.py syncdb
     ./manage.py migrate
 
+### Common problems
+
+- Make sure there is no dynamic content inside compress tags.
+
+
 ### Heroku-specific stuff
 
 For heroku deployments, use a buildback which knows about combining node and
 python.  Otherwise, Heroku will auto-detect one w/o the other and
 requirements will not be installed.
 
-    heroku config:set BUILDPACK_URL='https://github.com/thurloat/heroku-buildpack-python.git'
+    heroku config:set BUILDPACK_URL='https://github.com/heroku/heroku-buildpack-python' # Node not needed
+    heroku config:set BUILDPACK_URL='https://github.com/thurloat/heroku-buildpack-python.git' # Node needed
+
     heroku addons:add heroku-postgresql:dev
 
-While we are on the topic of heroku keys, you might as well set other
-environment variables as needed:
+Set up an S3 root bucket (for the project, not for each deployment).
+Confirm the bucket name matches that in settings/heroku/base.py.  Add
+an IAM user for each deployment, and give it copy an appropriate
+permissions from another project.  Last, set the heroku config
+variables:
 
     AWS_ACCESS_KEY_ID          # use a project-specific one!!
     AWS_SECRET_ACCESS_KEY
+    SECRET_KEY                 # Django secret key
+
+Confirm the following is set:
+
+    DATABASE_URL
